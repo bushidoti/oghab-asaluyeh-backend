@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Document(models.Model):
     contractNumber = models.CharField(max_length=500, blank=True, null=True)
     employer = models.CharField(blank=True, null=True, max_length=50)
