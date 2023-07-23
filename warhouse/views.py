@@ -26,19 +26,6 @@ class AllProductstApi(viewsets.ModelViewSet):
     filterset_fields = ['id', 'date', 'consumable', 'document_code', 'document_type', 'operator', 'receiver', 'buyer', 'systemID',
                         'name', 'product']
 
-    def get_queryset(self):
-        queryset = AllProducts.objects.all()
-        query_artist = self.request.query_params.get('inventory')
-        if query_artist is not None:
-            try:
-                artist = Product.objects.get(artistName=query_artist)
-                queryset = queryset.filter(artist=artist)
-            except:
-                pass
-        code = self.request.query_params.get('code')
-        if code is not None:
-            queryset = queryset.filter(code=code)
-        return queryset
 
 
 class AutoIncrementApi(viewsets.ModelViewSet):
