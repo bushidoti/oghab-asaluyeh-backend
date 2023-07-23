@@ -128,7 +128,8 @@ class AirportEquipment(models.Model):
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
-
+    canceled_describe = models.TextField(blank=True, null=True)
+    is_cancel = models.BooleanField(blank=True, null=True)
 
 class RepairedAirportEquipment(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
@@ -166,7 +167,8 @@ class SafetyEquipment(models.Model):
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
-
+    canceled_describe = models.TextField(blank=True, null=True)
+    is_cancel = models.BooleanField(blank=True, null=True)
 
 class RepairedSafetyEquipment(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
@@ -212,7 +214,8 @@ class AirportVehicle(models.Model):
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
-
+    canceled_describe = models.TextField(blank=True, null=True)
+    is_cancel = models.BooleanField(blank=True, null=True)
 
 class RepairedAirportVehicle(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
@@ -259,7 +262,8 @@ class OfficeVehicle(models.Model):
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
-
+    canceled_describe = models.TextField(blank=True, null=True)
+    is_cancel = models.BooleanField(blank=True, null=True)
 
 class RepairedOfficeVehicle(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
@@ -296,7 +300,8 @@ class AirportFurniture(models.Model):
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
-
+    canceled_describe = models.TextField(blank=True, null=True)
+    is_cancel = models.BooleanField(blank=True, null=True)
 
 class RepairedAirportFurniture(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
@@ -341,7 +346,8 @@ class Airplane(models.Model):
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
-
+    canceled_describe = models.TextField(blank=True, null=True)
+    is_cancel = models.BooleanField(blank=True, null=True)
 
 class RepairedAirplane(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
@@ -378,7 +384,8 @@ class OfficeFurniture(models.Model):
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
-
+    canceled_describe = models.TextField(blank=True, null=True)
+    is_cancel = models.BooleanField(blank=True, null=True)
 
 class RepairedOfficeFurniture(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
@@ -413,7 +420,8 @@ class ElectronicFurniture(models.Model):
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
-
+    canceled_describe = models.TextField(blank=True, null=True)
+    is_cancel = models.BooleanField(blank=True, null=True)
 
 class RepairedElectronicFurniture(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
@@ -448,7 +456,8 @@ class FacilityFurniture(models.Model):
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
-
+    canceled_describe = models.TextField(blank=True, null=True)
+    is_cancel = models.BooleanField(blank=True, null=True)
 
 class RepairedFacilityFurniture(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
@@ -492,7 +501,8 @@ class DigitalFurniture(models.Model):
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
-
+    canceled_describe = models.TextField(blank=True, null=True)
+    is_cancel = models.BooleanField(blank=True, null=True)
 
 class RepairedDigitalFurniture(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
@@ -526,7 +536,8 @@ class NoneIndustrialTool(models.Model):
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
-
+    canceled_describe = models.TextField(blank=True, null=True)
+    is_cancel = models.BooleanField(blank=True, null=True)
 
 class IndustrialTool(models.Model):
     code = models.BigIntegerField(primary_key=True, unique=True)
@@ -551,7 +562,8 @@ class IndustrialTool(models.Model):
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
-
+    canceled_describe = models.TextField(blank=True, null=True)
+    is_cancel = models.BooleanField(blank=True, null=True)
 
 class RepairedIndustrialTool(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
@@ -579,7 +591,8 @@ class Benefit(models.Model):
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
-
+    canceled_describe = models.TextField(blank=True, null=True)
+    is_cancel = models.BooleanField(blank=True, null=True)
 
 class SupportItem(models.Model):
     code = models.BigIntegerField(primary_key=True, unique=True)
@@ -603,6 +616,8 @@ class SupportItem(models.Model):
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
+    canceled_describe = models.TextField(blank=True, null=True)
+    is_cancel = models.BooleanField(blank=True, null=True)
 
 
 class Factors(models.Model):
