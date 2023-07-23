@@ -23,85 +23,85 @@ class AutoIncrementSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class AirportEquipmentSerializer(serializers.ModelSerializer):
+class AirportEquipmentSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
     class Meta:
         model = AirportEquipment
         fields = '__all__'
 
 
-class SafetyEquipmentSerializer(serializers.ModelSerializer):
+class SafetyEquipmentSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
     class Meta:
         model = SafetyEquipment
         fields = '__all__'
 
 
-class AirportVehicleSerializer(serializers.ModelSerializer):
+class AirportVehicleSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
     class Meta:
         model = AirportVehicle
         fields = '__all__'
 
 
-class AirplaneSerializer(serializers.ModelSerializer):
+class AirplaneSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
     class Meta:
         model = Airplane
         fields = '__all__'
 
 
-class OfficeVehicleSerializer(serializers.ModelSerializer):
+class OfficeVehicleSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
     class Meta:
         model = OfficeVehicle
         fields = '__all__'
 
 
-class ElectronicFurnitureSerializer(serializers.ModelSerializer):
+class ElectronicFurnitureSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
     class Meta:
         model = ElectronicFurniture
         fields = '__all__'
 
 
-class FacilityFurnitureSerializer(serializers.ModelSerializer):
+class FacilityFurnitureSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
     class Meta:
         model = FacilityFurniture
         fields = '__all__'
 
 
-class DigitalFurnitureSerializer(serializers.ModelSerializer):
+class DigitalFurnitureSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
     class Meta:
         model = DigitalFurniture
         fields = '__all__'
 
 
-class OfficeFurnitureSerializer(serializers.ModelSerializer):
+class OfficeFurnitureSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
     class Meta:
         model = OfficeFurniture
         fields = '__all__'
 
 
-class IndustrialToolSerializer(serializers.ModelSerializer):
+class IndustrialToolSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
     class Meta:
         model = IndustrialTool
         fields = '__all__'
 
 
-class NoneIndustrialToolSerializer(serializers.ModelSerializer):
+class NoneIndustrialToolSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
     class Meta:
         model = NoneIndustrialTool
         fields = '__all__'
 
 
-class SupportItemSerializer(serializers.ModelSerializer):
+class SupportItemSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
     class Meta:
         model = SupportItem
         fields = '__all__'
 
 
-class BenefitSerializer(serializers.ModelSerializer):
+class BenefitSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
     class Meta:
         model = Benefit
         fields = '__all__'
 
 
-class AirportFurnitureSerializer(serializers.ModelSerializer):
+class AirportFurnitureSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
     class Meta:
         model = AirportFurniture
         fields = '__all__'
