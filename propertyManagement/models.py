@@ -3,7 +3,7 @@ from django.db import models
 
 class Person(models.Model):
     type = models.CharField(max_length=50, blank=True, null=True)
-    full_name = models.CharField(max_length=50, blank=True, null=True)
+    full_name = models.CharField(max_length=50, blank=False, null=True)
     date = models.DateField(blank=True, null=True)
     national_id = models.CharField(max_length=50, blank=True, null=True)
     sex = models.CharField(max_length=50, blank=True, null=True)
@@ -33,9 +33,9 @@ class Person(models.Model):
 
 
 class Property(models.Model):
-    typeProperty = models.CharField(max_length=50, blank=True, null=True)
-    type_form = models.BooleanField(blank=True, null=True, max_length=50)
-    name = models.CharField(max_length=50, blank=True, null=True)
+    typeProperty = models.CharField(max_length=50, blank=False, null=True)
+    type_form = models.BooleanField(blank=False, null=True, max_length=50)
+    name = models.CharField(max_length=50, blank=False, null=True)
     docNumber = models.CharField(max_length=50, blank=True, null=True)
     plateMotor = models.CharField(max_length=50, blank=True, null=True)
     addressChassis = models.CharField(max_length=500, blank=True, null=True)
@@ -43,7 +43,7 @@ class Property(models.Model):
     modelMeter = models.CharField(max_length=50, blank=True, null=True)
     madeOf = models.CharField(max_length=50, blank=True, null=True)
     part1plate = models.CharField(max_length=2, blank=True, null=True)
-    part2plate = models.CharField(max_length=1, blank=True, null=True)
+    part2plate = models.CharField(max_length=25, blank=True, null=True)
     part3plate = models.CharField(max_length=3, blank=True, null=True)
     cityPlate = models.CharField(max_length=2, blank=True, null=True)
     descriptionLocation = models.CharField(max_length=500, blank=True, null=True)

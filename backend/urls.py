@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from rest_framework_simplejwt import views as jwt_views
+
+from authentification.views import UserApi, EmployeeApi
 from documentManagement.views import DocumentApi
 from propertyManagement.views import PersonApi, PropertyApi
 from warhouse.views import ProductApi, AllProductstApi, AutoIncrementApi, HandlingApi, AutoIncrementCheckApi, \
@@ -14,6 +16,8 @@ router = routers.DefaultRouter()
 router.register(r'documents', DocumentApi, 'documents')
 router.register(r'persons', PersonApi, 'persons')
 router.register(r'properties', PropertyApi, 'properties')
+router.register(r'employee', EmployeeApi, 'employee')
+router.register(r'user', UserApi, 'user')
 router.register(r'product', ProductApi, 'product')
 router.register(r'allproducts', AllProductstApi, 'allproducts')
 router.register(r'autoIncrement', AutoIncrementApi, 'autoIncrement')

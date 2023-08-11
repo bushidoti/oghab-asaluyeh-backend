@@ -4,6 +4,11 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from authentification.models import Employee
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import viewsets
+from django.contrib.auth.models import User
+
+from authentification.serializer import UserSerializer, EmployeeSerializer
 
 
 class FullNameView(APIView):
@@ -44,3 +49,17 @@ class LogoutView(APIView):
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserApi(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+
+
+class EmployeeApi(viewsets.ModelViewSet):
+
+    serializer_class = EmployeeSerializer
+    queryset = Employee.objects.all()
+
