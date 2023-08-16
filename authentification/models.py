@@ -7,3 +7,7 @@ class Employee(models.Model):
     department = models.CharField(max_length=100, blank=True, null=True)
     rank = models.CharField(max_length=100, blank=True, null=True)
     office = models.CharField(max_length=100, blank=True, null=True)
+
+
+class Maintenance(models.Model):
+    status = models.BooleanField(default=False)

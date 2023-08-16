@@ -3,7 +3,7 @@ from django.urls import path, include
 from rest_framework import routers
 from rest_framework_simplejwt import views as jwt_views
 
-from authentification.views import UserApi, EmployeeApi
+from authentification.views import UserApi, EmployeeApi, MaintenanceApi
 from documentManagement.views import DocumentApi
 from propertyManagement.views import PersonApi, PropertyApi
 from warhouse.views import ProductApi, AllProductstApi, AutoIncrementApi, HandlingApi, AutoIncrementCheckApi, \
@@ -38,6 +38,7 @@ router.register(r'factors', FactorsApi, 'factors')
 router.register(r'electronicfurniture', ElectronicFurnitureApi, 'electronicfurniture')
 router.register(r'supportitem', SupportItemApi, 'supportitem')
 router.register(r'industrialtool', IndustrialToolApi, 'industrialtool')
+router.register(r'maintenance', MaintenanceApi, 'maintenance')
 router.register(r'noneindustrialtool', NoneIndustrialToolApi, 'noneindustrialtool')
 router.register(r'autoincrementfactorproperty', AutoIncrementFactorPropertyApi, 'autoincrementfactorproperty')
 router.register(r'repairedigitalfurniture', RepairedDigitalFurnitureApi, 'repairedigitalfurniture')
