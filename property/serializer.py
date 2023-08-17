@@ -179,7 +179,7 @@ class AutoIncrementFactorSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class FactorsSerializer(serializers.ModelSerializer):
+class FactorsSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
     class Meta:
         model = Factors
         fields = '__all__'
