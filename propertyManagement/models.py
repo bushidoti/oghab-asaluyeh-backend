@@ -11,6 +11,7 @@ class Person(models.Model):
     office = models.CharField(max_length=50, blank=True, null=True)
     job = models.CharField(max_length=50, blank=True, null=True)
     approvedPrice = models.CharField(max_length=50, blank=True, null=True)
+    caseNumber = models.CharField(max_length=50, blank=True, null=True)
     commitmentPrice = models.CharField(max_length=50, blank=True, null=True)
     typeBail = models.CharField(max_length=50, blank=True, null=True)
     firstBail = models.CharField(max_length=50, blank=True, null=True)
