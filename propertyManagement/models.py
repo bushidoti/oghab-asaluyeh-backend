@@ -7,6 +7,7 @@ class Person(models.Model):
     date = models.DateField(blank=True, null=True)
     national_id = models.CharField(max_length=50, blank=True, null=True)
     sex = models.CharField(max_length=50, blank=True, null=True)
+    extension = models.CharField(max_length=50, blank=True, null=True)
     office = models.CharField(max_length=50, blank=True, null=True)
     job = models.CharField(max_length=50, blank=True, null=True)
     approvedPrice = models.CharField(max_length=50, blank=True, null=True)
@@ -16,7 +17,9 @@ class Person(models.Model):
     secondBail = models.CharField(max_length=50, blank=True, null=True)
     clearedStatus = models.BooleanField(default=False, blank=True, null=True)
     clearedDate = models.DateField(blank=True, null=True)
+    expireDate = models.DateField(blank=True, null=True)
     receivedDocument = models.BooleanField(default=False, blank=True, null=True)
+    extended = models.BooleanField(default=False, blank=True, null=True)
     Birth_certificate1 = models.TextField(blank=True, null=True)
     Birth_certificate2 = models.TextField(blank=True, null=True)
     Birth_certificate3 = models.TextField(blank=True, null=True)
@@ -29,6 +32,10 @@ class Person(models.Model):
     insurance = models.TextField(blank=True, null=True)
     police = models.TextField(blank=True, null=True)
     retired = models.TextField(blank=True, null=True)
+    degreeEducation = models.TextField(blank=True, null=True)
+    personalPhoto = models.TextField(blank=True, null=True)
+    certificateSecurity = models.TextField(blank=True, null=True)
+    retired_insurance = models.TextField(blank=True, null=True)
     retired_card = models.TextField(blank=True, null=True)
 
 
