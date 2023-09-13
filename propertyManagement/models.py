@@ -18,7 +18,7 @@ class Person(models.Model):
     secondBail = models.CharField(max_length=50, blank=True, null=True)
     clearedStatus = models.BooleanField(default=False, blank=True, null=True)
     clearedDate = models.DateField(blank=True, null=True)
-    expireDate = models.DateField(blank=True, null=True)
+    expireDate = models.CharField(max_length=50, blank=True, null=True)
     receivedDocument = models.BooleanField(default=False, blank=True, null=True)
     extended = models.BooleanField(default=False, blank=True, null=True)
     Birth_certificate1 = models.TextField(blank=True, null=True)
