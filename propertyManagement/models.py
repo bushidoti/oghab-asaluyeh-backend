@@ -17,6 +17,7 @@ class Person(models.Model):
     firstBail = models.CharField(max_length=50, blank=True, null=True)
     secondBail = models.CharField(max_length=50, blank=True, null=True)
     clearedStatus = models.BooleanField(default=False, blank=True, null=True)
+    affidavitStatus = models.BooleanField(default=False, blank=True, null=True)
     clearedDate = models.DateField(blank=True, null=True)
     expireDate = models.CharField(max_length=50, blank=True, null=True)
     receivedDocument = models.BooleanField(default=False, blank=True, null=True)
@@ -38,6 +39,7 @@ class Person(models.Model):
     certificateSecurity = models.TextField(blank=True, null=True)
     retired_insurance = models.TextField(blank=True, null=True)
     retired_card = models.TextField(blank=True, null=True)
+    affidavitDoc = models.TextField(blank=True, null=True)
 
 
 class Property(models.Model):
