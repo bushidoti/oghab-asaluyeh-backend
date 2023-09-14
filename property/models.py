@@ -102,6 +102,8 @@ class AutoIncrementProperty(models.Model):
     support_item_07 = models.BigIntegerField(validators=[MaxValueValidator(107013999)], blank=True, null=True)
     airplane_07 = models.BigIntegerField(validators=[MaxValueValidator(107014999)], blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "شمارنده کد ثبت اموال"
 
 class AirportEquipment(models.Model):
     code = models.BigIntegerField(primary_key=True, unique=True)
@@ -112,7 +114,7 @@ class AirportEquipment(models.Model):
     inventory = models.CharField(max_length=50, blank=True, null=True)
     dst_inventory = models.CharField(max_length=50, blank=True, null=True)
     user = models.CharField(max_length=50, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     install_location = models.CharField(max_length=50, blank=True, null=True)
     owner = models.CharField(max_length=50, blank=True, null=True)
     type_register = models.CharField(max_length=50, blank=True, null=True)
@@ -123,7 +125,7 @@ class AirportEquipment(models.Model):
     message = models.CharField(max_length=50, blank=True, null=True)
     sign_received = models.TextField(max_length=500, blank=True, null=True)
     last_handling_result = models.TextField(max_length=500, blank=True, null=True)
-    last_handling_date = models.DateField(blank=True, null=True)
+    last_handling_date = models.CharField(max_length=50, blank=True, null=True)
     yearly_handling = models.CharField(max_length=4, blank=True, null=True)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
@@ -131,16 +133,22 @@ class AirportEquipment(models.Model):
     canceled_describe = models.TextField(blank=True, null=True)
     cancel_status = models.CharField(max_length=50, blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "تجهیزات فرودگاهی"
+
 
 class RepairedAirportEquipment(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     repaired_type = models.CharField(max_length=50, blank=True, null=True)
     description = models.TextField(max_length=50, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     airport_equipment = models.ForeignKey(AirportEquipment, on_delete=models.CASCADE)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "تعمیرات تجهیزات فرودگاهی"
 
 
 class SafetyEquipment(models.Model):
@@ -152,7 +160,7 @@ class SafetyEquipment(models.Model):
     inventory = models.CharField(max_length=50, blank=True, null=True)
     dst_inventory = models.CharField(max_length=50, blank=True, null=True)
     user = models.CharField(max_length=50, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     install_location = models.CharField(max_length=50, blank=True, null=True)
     use_for = models.CharField(max_length=50, blank=True, null=True)
     type_register = models.CharField(max_length=50, blank=True, null=True)
@@ -163,7 +171,7 @@ class SafetyEquipment(models.Model):
     message = models.CharField(max_length=50, blank=True, null=True)
     sign_received = models.TextField(max_length=500, blank=True, null=True)
     last_handling_result = models.TextField(max_length=500, blank=True, null=True)
-    last_handling_date = models.DateField(blank=True, null=True)
+    last_handling_date = models.CharField(max_length=50, blank=True, null=True)
     yearly_handling = models.CharField(max_length=4, blank=True, null=True)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
@@ -171,16 +179,22 @@ class SafetyEquipment(models.Model):
     canceled_describe = models.TextField(blank=True, null=True)
     cancel_status = models.CharField(max_length=50, blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "تجهیزات ایمنی"
+
 
 class RepairedSafetyEquipment(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     repaired_type = models.CharField(max_length=50, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     description = models.TextField(max_length=50, blank=True, null=True)
     safety_equipment = models.ForeignKey(SafetyEquipment, on_delete=models.CASCADE)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "تعمیرات تجهیزات ایمنی"
 
 
 class AirportVehicle(models.Model):
@@ -192,7 +206,7 @@ class AirportVehicle(models.Model):
     inventory = models.CharField(max_length=50, blank=True, null=True)
     dst_inventory = models.CharField(max_length=50, blank=True, null=True)
     user = models.CharField(max_length=50, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     install_location = models.CharField(max_length=50, blank=True, null=True)
     owner = models.CharField(max_length=50, blank=True, null=True)
     type_register = models.CharField(max_length=50, blank=True, null=True)
@@ -211,7 +225,7 @@ class AirportVehicle(models.Model):
     message = models.CharField(max_length=50, blank=True, null=True)
     sign_received = models.TextField(max_length=500, blank=True, null=True)
     last_handling_result = models.TextField(max_length=500, blank=True, null=True)
-    last_handling_date = models.DateField(blank=True, null=True)
+    last_handling_date = models.CharField(max_length=50, blank=True, null=True)
     yearly_handling = models.CharField(max_length=4, blank=True, null=True)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
@@ -219,18 +233,23 @@ class AirportVehicle(models.Model):
     canceled_describe = models.TextField(blank=True, null=True)
     cancel_status = models.CharField(max_length=50, blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "خودرو فرودگاهی"
 
 class RepairedAirportVehicle(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     repaired_type = models.CharField(max_length=50, blank=True, null=True)
     kilometer = models.BigIntegerField(blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     year_changed = models.IntegerField(blank=True, null=True)
     description = models.TextField(max_length=50, blank=True, null=True)
     airport_vehicle = models.ForeignKey(AirportVehicle, on_delete=models.CASCADE)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "تعمیرات خودرو فرودگاهی"
 
 
 class OfficeVehicle(models.Model):
@@ -241,7 +260,7 @@ class OfficeVehicle(models.Model):
     year_made = models.IntegerField(blank=True, null=True)
     inventory = models.CharField(max_length=50, blank=True, null=True)
     user = models.CharField(max_length=50, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     install_location = models.CharField(max_length=50, blank=True, null=True)
     owner = models.CharField(max_length=50, blank=True, null=True)
     type_register = models.CharField(max_length=50, blank=True, null=True)
@@ -260,7 +279,7 @@ class OfficeVehicle(models.Model):
     message = models.CharField(max_length=50, blank=True, null=True)
     sign_received = models.TextField(max_length=500, blank=True, null=True)
     last_handling_result = models.TextField(max_length=500, blank=True, null=True)
-    last_handling_date = models.DateField(blank=True, null=True)
+    last_handling_date = models.CharField(max_length=50, blank=True, null=True)
     yearly_handling = models.CharField(max_length=4, blank=True, null=True)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
@@ -268,18 +287,23 @@ class OfficeVehicle(models.Model):
     canceled_describe = models.TextField(blank=True, null=True)
     cancel_status = models.CharField(max_length=50, blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "خودرو اداری"
 
 class RepairedOfficeVehicle(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     repaired_type = models.CharField(max_length=50, blank=True, null=True)
     kilometer = models.BigIntegerField(blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     year_changed = models.IntegerField(blank=True, null=True)
     description = models.TextField(max_length=50, blank=True, null=True)
     office_vehicle = models.ForeignKey(OfficeVehicle, on_delete=models.CASCADE)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "تعمیرات خودرو اداری"
 
 
 class AirportFurniture(models.Model):
@@ -290,7 +314,7 @@ class AirportFurniture(models.Model):
     year_buy = models.IntegerField(blank=True, null=True)
     inventory = models.CharField(max_length=50, blank=True, null=True)
     dst_inventory = models.CharField(max_length=50, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     install_location = models.CharField(max_length=50, blank=True, null=True)
     type_register = models.CharField(max_length=50, blank=True, null=True)
     repaired_status = models.BooleanField(blank=True, null=True)
@@ -299,7 +323,7 @@ class AirportFurniture(models.Model):
     message = models.CharField(max_length=50, blank=True, null=True)
     sign_received = models.TextField(max_length=500, blank=True, null=True)
     last_handling_result = models.TextField(max_length=500, blank=True, null=True)
-    last_handling_date = models.DateField(blank=True, null=True)
+    last_handling_date = models.CharField(max_length=50, blank=True, null=True)
     yearly_handling = models.CharField(max_length=4, blank=True, null=True)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
@@ -307,15 +331,20 @@ class AirportFurniture(models.Model):
     canceled_describe = models.TextField(blank=True, null=True)
     cancel_status = models.CharField(max_length=50, blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "اثاث فرودگاهی"
 
 class RepairedAirportFurniture(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     description = models.TextField(max_length=50, blank=True, null=True)
     airport_furniture = models.ForeignKey(AirportFurniture, on_delete=models.CASCADE)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "تعمیرات اثاث فرودگاهی"
 
 
 class Airplane(models.Model):
@@ -327,7 +356,7 @@ class Airplane(models.Model):
     inventory = models.CharField(max_length=50, blank=True, null=True)
     dst_inventory = models.CharField(max_length=50, blank=True, null=True)
     user = models.CharField(max_length=50, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     install_location = models.CharField(max_length=50, blank=True, null=True)
     owner = models.CharField(max_length=50, blank=True, null=True)
     type_register = models.CharField(max_length=50, blank=True, null=True)
@@ -346,7 +375,7 @@ class Airplane(models.Model):
     message = models.CharField(max_length=50, blank=True, null=True)
     sign_received = models.TextField(max_length=500, blank=True, null=True)
     last_handling_result = models.TextField(max_length=500, blank=True, null=True)
-    last_handling_date = models.DateField(blank=True, null=True)
+    last_handling_date = models.CharField(max_length=50, blank=True, null=True)
     yearly_handling = models.CharField(max_length=4, blank=True, null=True)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
@@ -354,18 +383,24 @@ class Airplane(models.Model):
     canceled_describe = models.TextField(blank=True, null=True)
     cancel_status = models.CharField(max_length=50, blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "هواپیما"
+
 
 class RepairedAirplane(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     repaired_type = models.CharField(max_length=50, blank=True, null=True)
     kilometer = models.BigIntegerField(blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     year_changed = models.IntegerField(blank=True, null=True)
     description = models.TextField(max_length=50, blank=True, null=True)
     airplane = models.ForeignKey(Airplane, on_delete=models.CASCADE)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "تعمیرات هواپیما"
 
 
 class OfficeFurniture(models.Model):
@@ -375,7 +410,7 @@ class OfficeFurniture(models.Model):
     year_made = models.IntegerField(blank=True, null=True)
     inventory = models.CharField(max_length=50, blank=True, null=True)
     dst_inventory = models.CharField(max_length=50, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     user = models.CharField(max_length=50, blank=True, null=True)
     using_location = models.CharField(max_length=50, blank=True, null=True)
     type_register = models.CharField(max_length=50, blank=True, null=True)
@@ -385,7 +420,7 @@ class OfficeFurniture(models.Model):
     message = models.CharField(max_length=50, blank=True, null=True)
     sign_received = models.TextField(max_length=500, blank=True, null=True)
     last_handling_result = models.TextField(max_length=500, blank=True, null=True)
-    last_handling_date = models.DateField(blank=True, null=True)
+    last_handling_date = models.CharField(max_length=50, blank=True, null=True)
     yearly_handling = models.CharField(max_length=4, blank=True, null=True)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
@@ -393,16 +428,21 @@ class OfficeFurniture(models.Model):
     canceled_describe = models.TextField(blank=True, null=True)
     cancel_status = models.CharField(max_length=50, blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "اثاث اداری"
+
 
 class RepairedOfficeFurniture(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     description = models.TextField(max_length=50, blank=True, null=True)
     office_furniture = models.ForeignKey(OfficeFurniture, on_delete=models.CASCADE)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "تعمیرات اثاث اداری"
 
 class ElectronicFurniture(models.Model):
     code = models.BigIntegerField(primary_key=True, unique=True)
@@ -412,7 +452,7 @@ class ElectronicFurniture(models.Model):
     year_buy = models.IntegerField(blank=True, null=True)
     inventory = models.CharField(max_length=50, blank=True, null=True)
     dst_inventory = models.CharField(max_length=50, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     user = models.CharField(max_length=50, blank=True, null=True)
     install_location = models.CharField(max_length=50, blank=True, null=True)
     type_register = models.CharField(max_length=50, blank=True, null=True)
@@ -422,7 +462,7 @@ class ElectronicFurniture(models.Model):
     message = models.CharField(max_length=50, blank=True, null=True)
     sign_received = models.TextField(max_length=500, blank=True, null=True)
     last_handling_result = models.TextField(max_length=500, blank=True, null=True)
-    last_handling_date = models.DateField(blank=True, null=True)
+    last_handling_date = models.CharField(max_length=50, blank=True, null=True)
     yearly_handling = models.CharField(max_length=4, blank=True, null=True)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
@@ -430,15 +470,20 @@ class ElectronicFurniture(models.Model):
     canceled_describe = models.TextField(blank=True, null=True)
     cancel_status = models.CharField(max_length=50, blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "اثاث الکترونیکی"
 
 class RepairedElectronicFurniture(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     description = models.TextField(max_length=50, blank=True, null=True)
     electronic_furniture = models.ForeignKey(ElectronicFurniture, on_delete=models.CASCADE)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "تعمیرات اثاث الکترونیکی"
 
 
 class FacilityFurniture(models.Model):
@@ -449,7 +494,7 @@ class FacilityFurniture(models.Model):
     year_buy = models.IntegerField(blank=True, null=True)
     inventory = models.CharField(max_length=50, blank=True, null=True)
     dst_inventory = models.CharField(max_length=50, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     user = models.CharField(max_length=50, blank=True, null=True)
     install_location = models.CharField(max_length=50, blank=True, null=True)
     type_register = models.CharField(max_length=50, blank=True, null=True)
@@ -459,7 +504,7 @@ class FacilityFurniture(models.Model):
     message = models.CharField(max_length=50, blank=True, null=True)
     sign_received = models.TextField(max_length=500, blank=True, null=True)
     last_handling_result = models.TextField(max_length=500, blank=True, null=True)
-    last_handling_date = models.DateField(blank=True, null=True)
+    last_handling_date = models.CharField(max_length=50, blank=True, null=True)
     yearly_handling = models.CharField(max_length=4, blank=True, null=True)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
@@ -467,16 +512,21 @@ class FacilityFurniture(models.Model):
     canceled_describe = models.TextField(blank=True, null=True)
     cancel_status = models.CharField(max_length=50, blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "اثاث تاسیساتی"
+
 
 class RepairedFacilityFurniture(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     description = models.TextField(max_length=50, blank=True, null=True)
     facility_furniture = models.ForeignKey(FacilityFurniture, on_delete=models.CASCADE)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "تعمیرات اثاث تاسیساتی"
 
 class DigitalFurniture(models.Model):
     code = models.BigIntegerField(primary_key=True, unique=True)
@@ -493,7 +543,7 @@ class DigitalFurniture(models.Model):
     year_buy = models.IntegerField(blank=True, null=True)
     inventory = models.CharField(max_length=50, blank=True, null=True)
     dst_inventory = models.CharField(max_length=50, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     user = models.CharField(max_length=50, blank=True, null=True)
     install_location = models.CharField(max_length=50, blank=True, null=True)
     type_register = models.CharField(max_length=50, blank=True, null=True)
@@ -505,7 +555,7 @@ class DigitalFurniture(models.Model):
     message = models.CharField(max_length=50, blank=True, null=True)
     sign_received = models.TextField(max_length=500, blank=True, null=True)
     last_handling_result = models.TextField(max_length=500, blank=True, null=True)
-    last_handling_date = models.DateField(blank=True, null=True)
+    last_handling_date = models.CharField(max_length=50, blank=True, null=True)
     yearly_handling = models.CharField(max_length=4, blank=True, null=True)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
@@ -513,16 +563,22 @@ class DigitalFurniture(models.Model):
     canceled_describe = models.TextField(blank=True, null=True)
     cancel_status = models.CharField(max_length=50, blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "اقلام دیجیتال"
+
 
 class RepairedDigitalFurniture(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     repaired_type = models.CharField(max_length=50, blank=True, null=True)
     description = models.TextField(max_length=50, blank=True, null=True)
     digital_furniture = models.ForeignKey(DigitalFurniture, on_delete=models.CASCADE)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "تعمیرات اقلام دیجیتال"
 
 
 class NoneIndustrialTool(models.Model):
@@ -532,7 +588,7 @@ class NoneIndustrialTool(models.Model):
     year_buy = models.IntegerField(blank=True, null=True)
     inventory = models.CharField(max_length=50, blank=True, null=True)
     dst_inventory = models.CharField(max_length=50, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     user = models.CharField(max_length=50, blank=True, null=True)
     using_location = models.CharField(max_length=50, blank=True, null=True)
     type_register = models.CharField(max_length=50, blank=True, null=True)
@@ -541,13 +597,16 @@ class NoneIndustrialTool(models.Model):
     message = models.CharField(max_length=50, blank=True, null=True)
     sign_received = models.TextField(max_length=500, blank=True, null=True)
     last_handling_result = models.TextField(max_length=500, blank=True, null=True)
-    last_handling_date = models.DateField(blank=True, null=True)
+    last_handling_date = models.CharField(max_length=50, blank=True, null=True)
     yearly_handling = models.CharField(max_length=4, blank=True, null=True)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
     canceled_describe = models.TextField(blank=True, null=True)
     cancel_status = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "اقلام غیر صنعتی"
 
 
 class IndustrialTool(models.Model):
@@ -558,7 +617,7 @@ class IndustrialTool(models.Model):
     year_buy = models.IntegerField(blank=True, null=True)
     inventory = models.CharField(max_length=50, blank=True, null=True)
     dst_inventory = models.CharField(max_length=50, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     user = models.CharField(max_length=50, blank=True, null=True)
     using_location = models.CharField(max_length=50, blank=True, null=True)
     type_register = models.CharField(max_length=50, blank=True, null=True)
@@ -568,7 +627,7 @@ class IndustrialTool(models.Model):
     message = models.CharField(max_length=50, blank=True, null=True)
     sign_received = models.TextField(max_length=500, blank=True, null=True)
     last_handling_result = models.TextField(max_length=500, blank=True, null=True)
-    last_handling_date = models.DateField(blank=True, null=True)
+    last_handling_date = models.CharField(max_length=50, blank=True, null=True)
     yearly_handling = models.CharField(max_length=4, blank=True, null=True)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
@@ -577,14 +636,21 @@ class IndustrialTool(models.Model):
     cancel_status = models.CharField(max_length=50, blank=True, null=True)
 
 
+    class Meta:
+        verbose_name_plural = "اقلام صنعتی"
+
+
 class RepairedIndustrialTool(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     description = models.TextField(max_length=50, blank=True, null=True)
     industrial_tool = models.ForeignKey(IndustrialTool, on_delete=models.CASCADE)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "تعمیرات اقلام صنعتی"
 
 
 class Benefit(models.Model):
@@ -593,18 +659,21 @@ class Benefit(models.Model):
     number_type = models.CharField(max_length=100, blank=True, null=True)
     number = models.CharField(max_length=50, blank=True, null=True)
     inventory = models.CharField(max_length=50, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     using_location = models.CharField(max_length=50, blank=True, null=True)
     type_register = models.CharField(max_length=50, blank=True, null=True)
     description = models.TextField(max_length=50, blank=True, null=True)
     last_handling_result = models.TextField(max_length=500, blank=True, null=True)
-    last_handling_date = models.DateField(blank=True, null=True)
+    last_handling_date = models.CharField(max_length=50, blank=True, null=True)
     yearly_handling = models.CharField(max_length=4, blank=True, null=True)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
     canceled_describe = models.TextField(blank=True, null=True)
     cancel_status = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "امتیازات"
 
 
 class SupportItem(models.Model):
@@ -615,7 +684,7 @@ class SupportItem(models.Model):
     type_item = models.CharField(max_length=50, blank=True, null=True)
     inventory = models.CharField(max_length=50, blank=True, null=True)
     dst_inventory = models.CharField(max_length=50, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     user = models.CharField(max_length=50, blank=True, null=True)
     using_location = models.CharField(max_length=50, blank=True, null=True)
     type_register = models.CharField(max_length=50, blank=True, null=True)
@@ -624,7 +693,7 @@ class SupportItem(models.Model):
     message = models.CharField(max_length=50, blank=True, null=True)
     sign_received = models.TextField(max_length=500, blank=True, null=True)
     last_handling_result = models.TextField(max_length=500, blank=True, null=True)
-    last_handling_date = models.DateField(blank=True, null=True)
+    last_handling_date = models.CharField(max_length=50, blank=True, null=True)
     yearly_handling = models.CharField(max_length=4, blank=True, null=True)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.BigIntegerField(blank=True, null=True)
@@ -632,16 +701,21 @@ class SupportItem(models.Model):
     canceled_describe = models.TextField(blank=True, null=True)
     cancel_status = models.CharField(max_length=50, blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "اقلام پشتیبانی"
+
 
 class Factors(models.Model):
     code = models.BigIntegerField(blank=True, null=True)
     name = models.CharField(max_length=100, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     inventory = models.CharField(max_length=50, blank=True, null=True)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     systemID = models.CharField(max_length=50, blank=True, null=True)
     factor = models.TextField(blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "فاکتور ها"
 
 class AutoIncrementFactor(models.Model):
     systemID_01 = models.BigIntegerField(blank=True, null=True)
@@ -651,3 +725,6 @@ class AutoIncrementFactor(models.Model):
     systemID_05 = models.BigIntegerField(blank=True, null=True)
     systemID_06 = models.BigIntegerField(blank=True, null=True)
     systemID_07 = models.BigIntegerField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "شمارنده کد فاکتور"

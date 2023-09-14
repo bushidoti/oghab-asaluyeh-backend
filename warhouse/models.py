@@ -9,18 +9,20 @@ class Product(models.Model):
     scale = models.CharField(max_length=50, blank=True, null=True)
     inventory = models.CharField(max_length=50, blank=True, null=True)
     operator = models.CharField(max_length=50, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     input = models.BigIntegerField(blank=True, null=True)
     output = models.BigIntegerField(blank=True, null=True)
     left_stock = models.BigIntegerField(default=False, blank=True, null=True)
     document_type = models.CharField(max_length=50, blank=True, null=True)
     document_code = models.CharField(max_length=50, blank=True, null=True)
     recycle_status = models.CharField(max_length=50, blank=True, null=True)
-    recycle_date = models.DateField(blank=True, null=True)
+    recycle_date = models.CharField(max_length=50, blank=True, null=True)
     description = models.TextField(max_length=50, blank=True, null=True)
     count = models.BigIntegerField(blank=True, null=True)
     yearly_handling = models.CharField(max_length=4, blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "کالا ها"
 
 class AllProducts(models.Model):
     consumable = models.CharField(max_length=50, blank=True, null=True)
@@ -30,7 +32,7 @@ class AllProducts(models.Model):
     afterOperator = models.FloatField(blank=True, null=True)
     operator = models.CharField(max_length=50, blank=True, null=True)
     scale = models.CharField(max_length=50, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     buyer = models.CharField(max_length=50, blank=True, null=True)
     seller = models.CharField(max_length=50, blank=True, null=True)
     receiver = models.CharField(max_length=50, blank=True, null=True)
@@ -42,7 +44,10 @@ class AllProducts(models.Model):
     amendment = models.TextField(blank=True, null=True)
     obsolete = models.BooleanField(blank=True, null=True)
     systemID = models.CharField(max_length=50, blank=True, null=True)
-    
+
+    class Meta:
+        verbose_name_plural = "گزارش کالا ها"
+
     def inventory(self):
         return self.product.inventory
 
@@ -52,8 +57,11 @@ class AllProducts(models.Model):
 
 class Handling(models.Model):
     result = models.TextField(blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = "انبارداری"
 
 
 class AutoIncrement(models.Model):
@@ -65,6 +73,8 @@ class AutoIncrement(models.Model):
     oghab106 = models.BigIntegerField(validators=[MaxValueValidator(1069999)], blank=True, null=True)
     oghab107 = models.BigIntegerField(validators=[MaxValueValidator(1079999)], blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "شمارنده کد ثبت"
 
 class AutoIncrementCheck(models.Model):
     oghab101 = models.BigIntegerField(blank=True, null=True)
@@ -75,6 +85,9 @@ class AutoIncrementCheck(models.Model):
     oghab106 = models.BigIntegerField(blank=True, null=True)
     oghab107 = models.BigIntegerField(blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "شمارنده کد حواله"
+
 
 class AutoIncrementFactor(models.Model):
     systemID_01 = models.BigIntegerField(blank=True, null=True)
@@ -84,3 +97,6 @@ class AutoIncrementFactor(models.Model):
     systemID_05 = models.BigIntegerField(blank=True, null=True)
     systemID_06 = models.BigIntegerField(blank=True, null=True)
     systemID_07 = models.BigIntegerField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "شمارنده کد فاکتور"

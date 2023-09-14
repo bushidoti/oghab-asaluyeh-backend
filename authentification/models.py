@@ -11,3 +11,6 @@ class Employee(models.Model):
 
 class Maintenance(models.Model):
     status = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name_plural = "حالت تعمیر"

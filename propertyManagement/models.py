@@ -2,9 +2,9 @@ from django.db import models
 
 
 class Person(models.Model):
-    type = models.CharField(max_length=50, blank=True, null=True)
-    full_name = models.CharField(max_length=50, blank=False, null=True)
-    date = models.DateField(blank=True, null=True)
+    type = models.CharField(verbose_name='embed',max_length=50, blank=True, null=True)
+    full_name = models.CharField(verbose_name='نام کامل',max_length=50, blank=False, null=True)
+    date = models.CharField(max_length=50, blank=True, null=True)
     national_id = models.CharField(max_length=50, blank=True, null=True)
     sex = models.CharField(max_length=50, blank=True, null=True)
     extension = models.CharField(max_length=50, blank=True, null=True)
@@ -18,7 +18,7 @@ class Person(models.Model):
     secondBail = models.CharField(max_length=50, blank=True, null=True)
     clearedStatus = models.BooleanField(default=False, blank=True, null=True)
     affidavitStatus = models.BooleanField(default=False, blank=True, null=True)
-    clearedDate = models.DateField(blank=True, null=True)
+    clearedDate = models.CharField(max_length=50, blank=True, null=True)
     expireDate = models.CharField(max_length=50, blank=True, null=True)
     receivedDocument = models.BooleanField(default=False, blank=True, null=True)
     extended = models.BooleanField(default=False, blank=True, null=True)
@@ -41,6 +41,8 @@ class Person(models.Model):
     retired_card = models.TextField(blank=True, null=True)
     affidavitDoc = models.TextField(blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "اشخاص"
 
 class Property(models.Model):
     typeProperty = models.CharField(max_length=50, blank=False, null=True)
@@ -62,7 +64,7 @@ class Property(models.Model):
     gasCard = models.CharField(max_length=50, blank=True, null=True)
     carCard = models.CharField(max_length=50, blank=True, null=True)
     description = models.CharField(max_length=500, blank=True, null=True)
-    soldDate = models.DateField(blank=True, null=True)
+    soldDate = models.CharField(max_length=50, blank=True, null=True)
     buyer = models.CharField(max_length=50, blank=True, null=True)
     soldStatus =  models.BooleanField(default=False, blank=True, null=True)
     saleFactorFile = models.TextField(blank=True, null=True)
@@ -70,3 +72,6 @@ class Property(models.Model):
     carCardFile = models.TextField(blank=True, null=True)
     greenCardFile = models.TextField(blank=True, null=True)
     gasCardFile = models.TextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "اموال"
