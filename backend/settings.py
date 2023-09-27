@@ -96,7 +96,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'oghab_db',
+        'NAME': 'oghabas1_oghab_db',
         'USER': 'root',
         'PASSWORD': 'W09337663405w',
         'HOST': 'localhost',  # Or an IP Address that your DB is hosted on
