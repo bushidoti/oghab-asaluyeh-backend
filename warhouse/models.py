@@ -24,6 +24,7 @@ class Product(models.Model):
     class Meta:
         verbose_name_plural = "کالا ها"
 
+
 class AllProducts(models.Model):
     consumable = models.CharField(max_length=50, blank=True, null=True)
     name = models.CharField(max_length=50, blank=False, null=True)
@@ -75,6 +76,7 @@ class AutoIncrement(models.Model):
 
     class Meta:
         verbose_name_plural = "شمارنده کد ثبت"
+
 
 class AutoIncrementCheck(models.Model):
     oghab101 = models.BigIntegerField(blank=True, null=True)
