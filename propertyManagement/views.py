@@ -10,7 +10,7 @@ from django_filters import rest_framework as df_filters
 
 
 class MyPermission(BasePermission):
-    message = "You do not have permission to perform action"
+    message = "دسترسی لازم را ندارید."
     permission_map = {
         "GET": "{app_label}.view_{model_name}",
         "POST": "{app_label}.add_{model_name}",
