@@ -5,6 +5,8 @@ from rest_framework.permissions import IsAuthenticated
 from .serializer import PersonSerializer, PropertySerializer
 from .models import Person, Property
 from rest_framework.permissions import BasePermission
+from django_filters.fields import CSVWidget, MultipleChoiceField
+from django_filters import rest_framework as df_filters
 
 
 class MyPermission(BasePermission):
@@ -33,6 +35,40 @@ class MyPermission(BasePermission):
         return False
 
 
+class MultipleField(MultipleChoiceField):
+    def valid_value(self, value):
+        return True
+
+
+class MultipleFilter(df_filters.MultipleChoiceFilter):
+    field_class = MultipleField
+
+
+class UserFilter(django_filters.rest_framework.FilterSet):
+    full_name = django_filters.rest_framework.CharFilter(field_name='full_name', lookup_expr='contains')
+    sex = MultipleFilter(
+        lookup_expr="contains",
+        field_name="sex",
+        widget=CSVWidget
+    )
+    type = django_filters.rest_framework.CharFilter(field_name='type', lookup_expr='contains')
+    national_id = django_filters.rest_framework.CharFilter(field_name='national_id', lookup_expr='contains')
+    job = django_filters.rest_framework.CharFilter(field_name='job', lookup_expr='contains')
+    office = MultipleFilter(
+        lookup_expr="contains",
+        field_name="office",
+        widget=CSVWidget
+    )
+    date = django_filters.rest_framework.CharFilter(field_name='date', lookup_expr='contains')
+    id = django_filters.rest_framework.NumberFilter(field_name='id', lookup_expr='contains')
+    clearedStatus = django_filters.rest_framework.BooleanFilter(field_name='clearedStatus', lookup_expr='contains')
+
+    class Meta:
+        model = Person
+        fields = ['full_name', 'sex', 'type', 'national_id', 'office', 'job',
+                  'date', 'clearedStatus', 'id']
+
+
 class PersonApi(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, MyPermission]
     perm_slug = "propertyManagement.person"
@@ -40,8 +76,7 @@ class PersonApi(viewsets.ModelViewSet):
     serializer_class = PersonSerializer
     queryset = Person.objects.all()
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
-    filterset_fields = ['full_name', 'sex', 'type', 'national_id', 'office', 'job',
-                        'date', 'clearedStatus', 'id']
+    filterset_class = UserFilter
 
 
 class PropertyApi(viewsets.ModelViewSet):
