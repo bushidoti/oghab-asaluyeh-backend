@@ -47,17 +47,21 @@ class MultipleFilter(df_filters.MultipleChoiceFilter):
 
 class ProductFilter(django_filters.rest_framework.FilterSet):
     name = django_filters.rest_framework.CharFilter(field_name='name', lookup_expr='contains')
-    type = django_filters.rest_framework.CharFilter(field_name='type', lookup_expr='contains')
     inventory = MultipleFilter(
         lookup_expr="contains",
         field_name="inventory",
+        widget=CSVWidget
+    )
+    category = MultipleFilter(
+        lookup_expr="contains",
+        field_name="category",
         widget=CSVWidget
     )
     code = django_filters.rest_framework.NumberFilter(field_name='code', lookup_expr='contains')
 
     class Meta:
         model = Product
-        fields = ['code', 'name', 'category','inventory']
+        fields = ['code', 'name', 'category', 'inventory']
 
 
 class ProductApi(viewsets.ModelViewSet):
