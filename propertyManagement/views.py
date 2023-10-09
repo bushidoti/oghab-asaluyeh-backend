@@ -44,7 +44,7 @@ class MultipleFilter(df_filters.MultipleChoiceFilter):
     field_class = MultipleField
 
 
-class UserFilter(django_filters.rest_framework.FilterSet):
+class PersonFilter(django_filters.rest_framework.FilterSet):
     full_name = django_filters.rest_framework.CharFilter(field_name='full_name', lookup_expr='contains')
     sex = MultipleFilter(
         lookup_expr="contains",
@@ -76,7 +76,7 @@ class PersonApi(viewsets.ModelViewSet):
     serializer_class = PersonSerializer
     queryset = Person.objects.all()
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
-    filterset_class = UserFilter
+    filterset_class = PersonFilter
 
 
 class PropertyApi(viewsets.ModelViewSet):
