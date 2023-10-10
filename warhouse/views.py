@@ -1,6 +1,5 @@
-from .serializer import ProductSerializer, AllProductsSerializer, AutoIncrementSerializer, HandlingSerializer, \
-    AutoIncrementCheckSerializer, AutoIncrementFactorSerializer
-from .models import Product, AllProducts, AutoIncrement, Handling, AutoIncrementCheck, AutoIncrementFactor
+from .serializer import *
+from .models import *
 import django_filters
 from rest_framework import viewsets
 from rest_framework.exceptions import MethodNotAllowed
@@ -85,12 +84,16 @@ class AllProductstFilter(django_filters.rest_framework.FilterSet):
     seller = django_filters.rest_framework.CharFilter(field_name='seller', lookup_expr='contains')
     document_code = django_filters.rest_framework.CharFilter(field_name='document_code', lookup_expr='contains')
     document_type = django_filters.rest_framework.CharFilter(field_name='document_type', lookup_expr='contains')
-    consumable = django_filters.rest_framework.CharFilter(field_name='consumable', lookup_expr='contains')
     id = django_filters.rest_framework.CharFilter(field_name='id', lookup_expr='exact')
     systemID = django_filters.rest_framework.CharFilter(field_name='systemID', lookup_expr='exact')
     operator = MultipleFilter(
         lookup_expr="contains",
         field_name="operator",
+        widget=CSVWidget
+    )
+    consumable = MultipleFilter(
+        lookup_expr="contains",
+        field_name="consumable",
         widget=CSVWidget
     )
     product = django_filters.rest_framework.NumberFilter(field_name='product', lookup_expr='exact')
@@ -112,6 +115,22 @@ class AllProductstApi(viewsets.ModelViewSet):
     queryset = AllProducts.objects.all()
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_class = AllProductstFilter
+
+
+class ConsumableApi(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, MyPermission]
+    perm_slug = "warhouse.allproducts"
+
+    serializer_class = ConsumableSerializer
+    queryset = Consumable.objects.all()
+
+
+class CategoryApi(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, MyPermission]
+    perm_slug = "warhouse.allproducts"
+
+    serializer_class = CategorySerializer
+    queryset = Category.objects.all()
 
 
 class AutoIncrementApi(viewsets.ModelViewSet):

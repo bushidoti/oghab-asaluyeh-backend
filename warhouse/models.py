@@ -65,6 +65,20 @@ class Handling(models.Model):
         verbose_name_plural = "انبارداری"
 
 
+class Consumable(models.Model):
+    value = models.CharField(max_length=50, blank=True)
+
+    class Meta:
+        verbose_name_plural = "مورد مصرف"
+
+
+class Category(models.Model):
+    value = models.CharField(max_length=50, blank=True)
+
+    class Meta:
+        verbose_name_plural = "گروه"
+
+
 class AutoIncrement(models.Model):
     oghab101 = models.BigIntegerField(validators=[MaxValueValidator(1019999)], blank=True, null=True)
     oghab102 = models.BigIntegerField(validators=[MaxValueValidator(1029999)], blank=True, null=True)

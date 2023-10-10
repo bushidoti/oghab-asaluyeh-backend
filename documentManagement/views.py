@@ -12,6 +12,5 @@ class DocumentApi(viewsets.ModelViewSet):
     serializer_class = DocumentSerializer
     queryset = Document.objects.all()
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
-    filterset_fields = ['id','employer', 'typeContract', 'id', 'contractNumber', 'dateContract', 'topicContract',
+    filterset_fields = ['id', 'employer', 'typeContract', 'id', 'contractNumber', 'dateContract', 'topicContract',
                         'clearedStatus']
-

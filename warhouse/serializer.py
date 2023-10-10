@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Product, AllProducts, AutoIncrement, Handling, AutoIncrementCheck, AutoIncrementFactor
+from .models import *
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -37,6 +37,18 @@ class AllProductsSerializer(DynamicFieldsModelSerializer, serializers.ModelSeria
             return expanded_fields + self.Meta.extra_fields
         else:
             return expanded_fields
+
+
+class ConsumableSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Consumable
+        fields = ['value']
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['value']
 
 
 class HandlingSerializer(serializers.ModelSerializer):

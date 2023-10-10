@@ -6,8 +6,7 @@ from rest_framework_simplejwt import views as jwt_views
 from authentification.views import UserApi, EmployeeApi, MaintenanceApi
 from documentManagement.views import DocumentApi
 from propertyManagement.views import PersonApi, PropertyApi
-from warhouse.views import ProductApi, AllProductstApi, AutoIncrementApi, HandlingApi, AutoIncrementCheckApi, \
-    AutoIncrementFactorApi
+from warhouse.views import *
 from property.views import *
 from django.conf import settings
 from django.conf.urls.static import static
@@ -32,6 +31,8 @@ router.register(r'officevehicle', OfficeVehicleApi, 'officevehicle')
 router.register(r'airportfurniture', AirportFurnitureApi, 'airportfurniture')
 router.register(r'officefurniture', OfficeFurnitureApi, 'officefurniture')
 router.register(r'digitalfurniture', DigitalFurnitureApi, 'digitalfurniture')
+router.register(r'consumable-list', ConsumableApi, 'consumable-list')
+router.register(r'category-list', CategoryApi, 'category-list')
 router.register(r'benefit', BenefitApi, 'benefit')
 router.register(r'facilityfurniture', FacilityFurnitureApi, 'facilityfurniture')
 router.register(r'factors', FactorsApi, 'factors')
