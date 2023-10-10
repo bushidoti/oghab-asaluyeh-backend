@@ -26,25 +26,25 @@ class Product(models.Model):
 
 
 class AllProducts(models.Model):
-    consumable = models.CharField(max_length=50, blank=True, null=True)
+    consumable = models.CharField(default='', max_length=50, blank=True, null=True)
     name = models.CharField(max_length=50, blank=False, null=True)
     input = models.FloatField(blank=True, null=True)
     output = models.FloatField(blank=True, null=True)
     afterOperator = models.FloatField(blank=True, null=True)
-    operator = models.CharField(max_length=50, blank=True, null=True)
-    scale = models.CharField(max_length=50, blank=True, null=True)
-    date = models.CharField(max_length=50, blank=True, null=True)
-    buyer = models.CharField(max_length=50, blank=True, null=True)
-    seller = models.CharField(max_length=50, blank=True, null=True)
-    receiver = models.CharField(max_length=50, blank=True, null=True)
-    document_type = models.CharField(max_length=50, blank=True, null=True)
-    document_code = models.CharField(max_length=50, blank=True, null=True)
+    operator = models.CharField(default='', max_length=50, blank=True, null=True)
+    scale = models.CharField(default='', max_length=50, blank=True, null=True)
+    date = models.CharField(default='', max_length=50, blank=True, null=True)
+    buyer = models.CharField(default='', max_length=50, blank=True, null=True)
+    seller = models.CharField(default='', max_length=50, blank=True, null=True)
+    receiver = models.CharField(default='', max_length=50, blank=True, null=True)
+    document_type = models.CharField(default='', max_length=50, blank=True, null=True)
+    document_code = models.CharField(default='', max_length=50, blank=True, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    factor = models.TextField(blank=True, null=True)
-    checkBill = models.TextField(blank=True, null=True)
-    amendment = models.TextField(blank=True, null=True)
+    factor = models.TextField(default='', blank=True, null=True)
+    checkBill = models.TextField(default='', blank=True, null=True)
+    amendment = models.TextField(default='', blank=True, null=True)
     obsolete = models.BooleanField(blank=True, null=True)
-    systemID = models.CharField(max_length=50, blank=True, null=True)
+    systemID = models.CharField(default='', max_length=50, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "گزارش کالا ها"

@@ -47,6 +47,7 @@ class MultipleFilter(df_filters.MultipleChoiceFilter):
 
 class ProductFilter(django_filters.rest_framework.FilterSet):
     name = django_filters.rest_framework.CharFilter(field_name='name', lookup_expr='contains')
+    name_exact = django_filters.rest_framework.CharFilter(field_name='name', lookup_expr='exact')
     inventory = MultipleFilter(
         lookup_expr="contains",
         field_name="inventory",
@@ -61,7 +62,7 @@ class ProductFilter(django_filters.rest_framework.FilterSet):
 
     class Meta:
         model = Product
-        fields = ['code', 'name', 'category', 'inventory']
+        fields = ['code', 'name', 'category', 'inventory', 'name_exact']
 
 
 class ProductApi(viewsets.ModelViewSet):
@@ -74,15 +75,43 @@ class ProductApi(viewsets.ModelViewSet):
     filterset_class = ProductFilter
 
 
+class AllProductstFilter(django_filters.rest_framework.FilterSet):
+    date = django_filters.rest_framework.CharFilter(field_name='date', lookup_expr='contains')
+    scale = django_filters.rest_framework.CharFilter(field_name='scale', lookup_expr='contains')
+    buyer = django_filters.rest_framework.CharFilter(field_name='buyer', lookup_expr='contains')
+    name = django_filters.rest_framework.CharFilter(field_name='name', lookup_expr='contains')
+    amendment = django_filters.rest_framework.CharFilter(field_name='amendment', lookup_expr='contains')
+    receiver = django_filters.rest_framework.CharFilter(field_name='receiver', lookup_expr='contains')
+    seller = django_filters.rest_framework.CharFilter(field_name='seller', lookup_expr='contains')
+    document_code = django_filters.rest_framework.CharFilter(field_name='document_code', lookup_expr='contains')
+    document_type = django_filters.rest_framework.CharFilter(field_name='document_type', lookup_expr='contains')
+    consumable = django_filters.rest_framework.CharFilter(field_name='consumable', lookup_expr='contains')
+    id = django_filters.rest_framework.CharFilter(field_name='id', lookup_expr='exact')
+    systemID = django_filters.rest_framework.CharFilter(field_name='systemID', lookup_expr='exact')
+    operator = MultipleFilter(
+        lookup_expr="contains",
+        field_name="operator",
+        widget=CSVWidget
+    )
+    product = django_filters.rest_framework.NumberFilter(field_name='product', lookup_expr='exact')
+
+    class Meta:
+        model = AllProducts
+        fields = ['id', 'date', 'seller', 'amendment', 'consumable', 'scale', 'document_code', 'document_type',
+                  'operator', 'receiver',
+                  'buyer',
+                  'systemID',
+                  'name', 'product']
+
+
 class AllProductstApi(viewsets.ModelViewSet):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = [IsAuthenticated, MyPermission]
+    perm_slug = "warhouse.allproducts"
 
     serializer_class = AllProductsSerializer
     queryset = AllProducts.objects.all()
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
-    filterset_fields = ['id', 'date', 'consumable', 'document_code', 'document_type', 'operator', 'receiver', 'buyer',
-                        'systemID',
-                        'name', 'product']
+    filterset_class = AllProductstFilter
 
 
 class AutoIncrementApi(viewsets.ModelViewSet):
