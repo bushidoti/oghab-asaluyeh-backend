@@ -1,7 +1,8 @@
 import django_filters
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.permissions import IsAuthenticated
+
 from .serializer import PersonSerializer, PropertySerializer
 from .models import Person, Property
 from rest_framework.permissions import BasePermission

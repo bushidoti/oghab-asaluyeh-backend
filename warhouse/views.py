@@ -1,7 +1,9 @@
+from rest_framework.response import Response
+
 from .serializer import *
 from .models import *
 import django_filters
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.permissions import BasePermission
@@ -115,6 +117,21 @@ class AllProductstApi(viewsets.ModelViewSet):
     queryset = AllProducts.objects.all()
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_class = AllProductstFilter
+
+    def create(self, request, *args, **kwargs):
+        """
+        #checks if post request data is an array initializes serializer with many=True
+        else executes default CreateModelMixin.create function
+        """
+        is_many = isinstance(request.data, list)
+        if not is_many:
+            return super(AllProductstApi, self).create(request, *args, **kwargs)
+        else:
+            serializer = self.get_serializer(data=request.data, many=True)
+            serializer.is_valid(raise_exception=True)
+            self.perform_create(serializer)
+            headers = self.get_success_headers(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
 class ConsumableApi(viewsets.ModelViewSet):
