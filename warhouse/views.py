@@ -119,10 +119,6 @@ class AllProductstApi(viewsets.ModelViewSet):
     filterset_class = AllProductstFilter
 
     def create(self, request, *args, **kwargs):
-        """
-        #checks if post request data is an array initializes serializer with many=True
-        else executes default CreateModelMixin.create function
-        """
         is_many = isinstance(request.data, list)
         if not is_many:
             return super(AllProductstApi, self).create(request, *args, **kwargs)
@@ -151,28 +147,52 @@ class CategoryApi(viewsets.ModelViewSet):
 
 
 class AutoIncrementApi(viewsets.ModelViewSet):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = [IsAuthenticated, MyPermission]
+    perm_slug = "warhouse.allproducts"
 
     serializer_class = AutoIncrementSerializer
     queryset = AutoIncrement.objects.all()
 
 
+class AutoIncrementProductApi(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, MyPermission]
+    perm_slug = "warhouse.allproducts"
+
+    serializer_class = AutoIncrementProductSerializer
+    queryset = AutoIncrementProduct.objects.all()
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filterset_fields = ['inventory']
+
+
+class AutoIncrementProductFactorApi(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, MyPermission]
+    perm_slug = "warhouse.allproducts"
+
+    serializer_class = AutoIncrementProductFactorSerializer
+    queryset = AutoIncrementProductFactor.objects.all()
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filterset_fields = ['inventory']
+
+
 class AutoIncrementCheckApi(viewsets.ModelViewSet):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = [IsAuthenticated, MyPermission]
+    perm_slug = "warhouse.allproducts"
 
     serializer_class = AutoIncrementCheckSerializer
     queryset = AutoIncrementCheck.objects.all()
 
 
 class AutoIncrementFactorApi(viewsets.ModelViewSet):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = [IsAuthenticated, MyPermission]
+    perm_slug = "warhouse.allproducts"
 
     serializer_class = AutoIncrementFactorSerializer
     queryset = AutoIncrementFactor.objects.all()
 
 
 class HandlingApi(viewsets.ModelViewSet):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = [IsAuthenticated, MyPermission]
+    perm_slug = "warhouse.allproducts"
 
     serializer_class = HandlingSerializer
     queryset = Handling.objects.all()

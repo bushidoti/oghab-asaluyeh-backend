@@ -92,6 +92,14 @@ class AutoIncrement(models.Model):
         verbose_name_plural = "شمارنده کد ثبت"
 
 
+class AutoIncrementProduct(models.Model):
+    increment = models.BigIntegerField(blank=True, null=True)
+    inventory = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "شمارنده کد ثبت"
+
+
 class AutoIncrementCheck(models.Model):
     oghab101 = models.BigIntegerField(blank=True, null=True)
     oghab102 = models.BigIntegerField(blank=True, null=True)
@@ -113,6 +121,14 @@ class AutoIncrementFactor(models.Model):
     systemID_05 = models.BigIntegerField(blank=True, null=True)
     systemID_06 = models.BigIntegerField(blank=True, null=True)
     systemID_07 = models.BigIntegerField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "شمارنده کد فاکتور"
+
+
+class AutoIncrementProductFactor(models.Model):
+    increment = models.BigIntegerField(blank=True, null=True)
+    inventory = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "شمارنده کد فاکتور"
