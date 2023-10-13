@@ -138,6 +138,14 @@ class ConsumableApi(viewsets.ModelViewSet):
     queryset = Consumable.objects.all()
 
 
+class FactorsProductApi(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, MyPermission]
+    perm_slug = "warhouse.allproducts"
+
+    serializer_class = FactorsProductSerializer
+    queryset = FactorsProduct.objects.all()
+
+
 class CategoryApi(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, MyPermission]
     perm_slug = "warhouse.allproducts"

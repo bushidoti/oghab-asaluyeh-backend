@@ -85,3 +85,9 @@ class AutoIncrementFactorSerializer(serializers.ModelSerializer):
     class Meta:
         model = AutoIncrementFactor
         fields = '__all__'
+
+
+class FactorsProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FactorsProduct
+        fields = '__all__'
