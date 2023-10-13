@@ -108,6 +108,15 @@ class FactorsProduct(models.Model):
     class Meta:
         verbose_name_plural = "فاکتور ها"
 
+
+class ChecksProduct(models.Model):
+    code = models.BigIntegerField(primary_key=True, unique=True)
+    inventory = models.CharField(max_length=50, blank=True, null=True)
+    check = models.TextField(default='', blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "فاکتور ها"
+
 class AutoIncrementCheck(models.Model):
     oghab101 = models.BigIntegerField(blank=True, null=True)
     oghab102 = models.BigIntegerField(blank=True, null=True)
@@ -140,3 +149,11 @@ class AutoIncrementProductFactor(models.Model):
 
     class Meta:
         verbose_name_plural = "شمارنده کد فاکتور"
+
+
+class AutoIncrementProductCheck(models.Model):
+    increment = models.BigIntegerField(blank=True, null=True)
+    inventory = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "شمارنده کد حواله"

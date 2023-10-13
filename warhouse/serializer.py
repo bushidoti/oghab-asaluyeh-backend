@@ -75,6 +75,12 @@ class AutoIncrementProductFactorSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class AutoIncrementProductCheckSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AutoIncrementProductCheck
+        fields = '__all__'
+
+
 class AutoIncrementCheckSerializer(serializers.ModelSerializer):
     class Meta:
         model = AutoIncrementCheck
@@ -90,4 +96,10 @@ class AutoIncrementFactorSerializer(serializers.ModelSerializer):
 class FactorsProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = FactorsProduct
+        fields = '__all__'
+
+
+class ChecksProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ChecksProduct
         fields = '__all__'
