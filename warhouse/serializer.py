@@ -101,5 +101,5 @@ class FactorsProductSerializer(serializers.ModelSerializer):
 
 class ChecksProductSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ChecksProduct
+        model = ProductCheck
         fields = '__all__'

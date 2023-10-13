@@ -109,13 +109,14 @@ class FactorsProduct(models.Model):
         verbose_name_plural = "فاکتور ها"
 
 
-class ChecksProduct(models.Model):
+class ProductCheck(models.Model):
     code = models.BigIntegerField(primary_key=True, unique=True)
     inventory = models.CharField(max_length=50, blank=True, null=True)
-    check = models.TextField(default='', blank=True, null=True)
+    checks = models.TextField(default='', blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "فاکتور ها"
+
 
 class AutoIncrementCheck(models.Model):
     oghab101 = models.BigIntegerField(blank=True, null=True)

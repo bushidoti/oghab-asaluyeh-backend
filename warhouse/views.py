@@ -146,13 +146,12 @@ class FactorsProductApi(viewsets.ModelViewSet):
     queryset = FactorsProduct.objects.all()
 
 
-
 class ChecksProductApi(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, MyPermission]
     perm_slug = "warhouse.allproducts"
 
     serializer_class = ChecksProductSerializer
-    queryset = FactorsProduct.objects.all()
+    queryset = ProductCheck.objects.all()
 
 
 class CategoryApi(viewsets.ModelViewSet):
