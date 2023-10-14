@@ -100,8 +100,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'oghabas1_oghab_db',
-        'USER': 'oghabas1_admin',
-        'PASSWORD': 'W1530346241w',
+        'USER': 'root',
+        'PASSWORD': 'W09337663405w',
         'HOST': 'localhost',  # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
