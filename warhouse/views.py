@@ -87,7 +87,7 @@ class AllProductstFilter(django_filters.rest_framework.FilterSet):
     document_code = django_filters.rest_framework.CharFilter(field_name='document_code', lookup_expr='contains')
     document_type = django_filters.rest_framework.CharFilter(field_name='document_type', lookup_expr='contains')
     id = django_filters.rest_framework.CharFilter(field_name='id', lookup_expr='exact')
-    systemID = django_filters.rest_framework.CharFilter(field_name='systemID', lookup_expr='exact')
+    systemID = django_filters.rest_framework.NumberFilter(field_name='systemID', lookup_expr='exact')
     operator = MultipleFilter(
         lookup_expr="contains",
         field_name="operator",
@@ -152,6 +152,25 @@ class ChecksProductApi(viewsets.ModelViewSet):
 
     serializer_class = ChecksProductSerializer
     queryset = ProductCheck.objects.all()
+
+
+class TransmissionApi(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, MyPermission]
+    perm_slug = "warhouse.allproducts"
+
+    serializer_class = TransmissionSerializer
+    queryset = Transmission.objects.all()
+
+    def create(self, request, *args, **kwargs):
+        is_many = isinstance(request.data, list)
+        if not is_many:
+            return super(TransmissionApi, self).create(request, *args, **kwargs)
+        else:
+            serializer = self.get_serializer(data=request.data, many=True)
+            serializer.is_valid(raise_exception=True)
+            self.perform_create(serializer)
+            headers = self.get_success_headers(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
 class CategoryApi(viewsets.ModelViewSet):

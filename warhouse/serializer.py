@@ -103,3 +103,9 @@ class ChecksProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductCheck
         fields = '__all__'
+
+
+class TransmissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Transmission
+        fields = '__all__'

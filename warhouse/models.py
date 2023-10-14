@@ -109,6 +109,19 @@ class FactorsProduct(models.Model):
         verbose_name_plural = "فاکتور ها"
 
 
+class Transmission(models.Model):
+    name = models.CharField(default='', max_length=50, blank=False)
+    sender = models.CharField(max_length=50, blank=False)
+    consumable = models.CharField(max_length=50, blank=False)
+    input = models.FloatField(blank=True, null=True)
+    scale = models.CharField(default='', max_length=50, blank=False, null=False)
+    date = models.CharField(default='', max_length=50, blank=False, null=False)
+    category = models.CharField(default='', max_length=50, blank=False, null=False)
+
+    class Meta:
+        verbose_name_plural = "انتقالی ها"
+
+
 class ProductCheck(models.Model):
     code = models.BigIntegerField(primary_key=True, unique=True)
     inventory = models.CharField(max_length=50, blank=True, null=True)
