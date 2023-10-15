@@ -38,7 +38,7 @@ class AllProducts(models.Model):
     seller = models.CharField(default='', max_length=50, blank=True, null=True)
     receiver = models.CharField(default='', max_length=50, blank=True, null=True)
     document_type = models.CharField(default='', max_length=50, blank=True, null=True)
-    document_code = models.CharField(default='', max_length=50, blank=True, null=True)
+    document_code = models.CharField(default='', max_length=150, blank=True, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     factor = models.TextField(default='', blank=True, null=True)
     checkBill = models.TextField(default='', blank=True, null=True)
@@ -117,6 +117,7 @@ class Transmission(models.Model):
     scale = models.CharField(default='', max_length=50, blank=False, null=False)
     date = models.CharField(default='', max_length=50, blank=False, null=False)
     category = models.CharField(default='', max_length=50, blank=False, null=False)
+    systemID = models.CharField(default='', max_length=50, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "انتقالی ها"

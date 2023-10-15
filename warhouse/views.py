@@ -160,6 +160,8 @@ class TransmissionApi(viewsets.ModelViewSet):
 
     serializer_class = TransmissionSerializer
     queryset = Transmission.objects.all()
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filterset_fields = ['receiver']
 
     def create(self, request, *args, **kwargs):
         is_many = isinstance(request.data, list)
