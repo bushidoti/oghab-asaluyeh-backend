@@ -27,7 +27,7 @@ class AllProductsSerializer(DynamicFieldsModelSerializer, serializers.ModelSeria
     class Meta:
         model = AllProducts
         fields = '__all__'
-        extra_fields = ['inventory', 'category']
+        extra_fields = ['inventory', 'category', 'name']
 
     def get_field_names(self, declared_fields, info):
         expanded_fields = super(AllProductsSerializer, self).get_field_names(

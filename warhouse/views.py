@@ -80,13 +80,23 @@ class AllProductstFilter(django_filters.rest_framework.FilterSet):
     date = django_filters.rest_framework.CharFilter(field_name='date', lookup_expr='contains')
     scale = django_filters.rest_framework.CharFilter(field_name='scale', lookup_expr='contains')
     buyer = django_filters.rest_framework.CharFilter(field_name='buyer', lookup_expr='contains')
-    name = django_filters.rest_framework.CharFilter(field_name='name', lookup_expr='contains')
+    name = django_filters.rest_framework.CharFilter(field_name='product__name', lookup_expr='contains')
     amendment = django_filters.rest_framework.CharFilter(field_name='amendment', lookup_expr='contains')
     receiver = django_filters.rest_framework.CharFilter(field_name='receiver', lookup_expr='contains')
     seller = django_filters.rest_framework.CharFilter(field_name='seller', lookup_expr='contains')
     document_code = django_filters.rest_framework.CharFilter(field_name='document_code', lookup_expr='contains')
     document_type = django_filters.rest_framework.CharFilter(field_name='document_type', lookup_expr='contains')
     id = django_filters.rest_framework.CharFilter(field_name='id', lookup_expr='exact')
+    inventory = MultipleFilter(
+        lookup_expr="contains",
+        field_name="product__inventory",
+        widget=CSVWidget
+    )
+    category = MultipleFilter(
+        lookup_expr="contains",
+        field_name="product__category",
+        widget=CSVWidget
+    )
     systemID = django_filters.rest_framework.NumberFilter(field_name='systemID', lookup_expr='exact')
     operator = MultipleFilter(
         lookup_expr="contains",
@@ -99,14 +109,17 @@ class AllProductstFilter(django_filters.rest_framework.FilterSet):
         widget=CSVWidget
     )
     product = django_filters.rest_framework.NumberFilter(field_name='product', lookup_expr='exact')
+    product_contain = django_filters.rest_framework.NumberFilter(field_name='product__code', lookup_expr='contains')
 
     class Meta:
         model = AllProducts
-        fields = ['id', 'date', 'seller', 'amendment', 'consumable', 'scale', 'document_code', 'document_type',
+        fields = ['id', 'date', 'name', 'seller', 'inventory', 'category', 'product_contain', 'amendment', 'consumable',
+                  'scale', 'document_code',
+                  'document_type',
                   'operator', 'receiver',
                   'buyer',
                   'systemID',
-                  'name', 'product']
+                  'product']
 
 
 class AllProductstApi(viewsets.ModelViewSet):

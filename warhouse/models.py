@@ -27,7 +27,6 @@ class Product(models.Model):
 
 class AllProducts(models.Model):
     consumable = models.CharField(default='', max_length=50, blank=True, null=True)
-    name = models.CharField(max_length=50, blank=False, null=True)
     input = models.FloatField(blank=True, null=True)
     output = models.FloatField(blank=True, null=True)
     afterOperator = models.FloatField(blank=True, null=True)
@@ -51,6 +50,9 @@ class AllProducts(models.Model):
 
     def inventory(self):
         return self.product.inventory
+
+    def name(self):
+        return self.product.name
 
     def category(self):
         return self.product.category
