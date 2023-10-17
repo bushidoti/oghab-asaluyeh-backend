@@ -25,6 +25,26 @@ class Product(models.Model):
         verbose_name_plural = "کالا ها"
 
 
+class FactorsProduct(models.Model):
+    code = models.BigIntegerField("کد ثبت", primary_key=True, unique=True)
+    inventory = models.CharField("انبار", max_length=50, blank=True, null=True)
+    factor = models.TextField("فایل باینری فاکتور", default='', blank=True, null=True)
+    jsonData = models.JSONField("کپسول اقلام فاکتور", blank=False, null=True)
+
+    class Meta:
+        verbose_name_plural = "فاکتور ها"
+
+
+class ProductCheck(models.Model):
+    code = models.BigIntegerField("کد ثبت", primary_key=True, unique=True)
+    inventory = models.CharField("انبار", max_length=50, blank=True, null=True)
+    checks = models.TextField("فایل باینری حواله", default='', blank=True, null=True)
+    jsonData = models.JSONField("کپسول اقلام حواله", blank=False, null=True)
+
+    class Meta:
+        verbose_name_plural = "حواله ها"
+
+
 class AllProducts(models.Model):
     consumable = models.CharField("مورد مصرف", default='', max_length=50, blank=True, null=True)
     input = models.FloatField("ورودی", blank=True, null=True)
@@ -38,9 +58,11 @@ class AllProducts(models.Model):
     receiver = models.CharField("تحویل گیرنده", default='', max_length=50, blank=True, null=True)
     document_type = models.CharField("نوع مدرک", default='', max_length=50, blank=True, null=True)
     document_code = models.CharField("شناسه مدرک", default='', max_length=150, blank=True, null=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="کالای مربوط به", )
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="کالای مربوط به")
     factor = models.TextField(default='فاکتور', blank=True, null=True)
-    checkBill = models.TextField("حواله", default='', blank=True, null=True)
+    checkBill = models.TextField("حواله", blank=True, null=True)
+    factorCode = models.ForeignKey(FactorsProduct, on_delete=models.CASCADE, blank=True, null=True)
+    checkCode = models.ForeignKey(ProductCheck, on_delete=models.CASCADE, blank=True, null=True)
     amendment = models.TextField("اصلاحیه", default='', blank=True, null=True)
     obsolete = models.BooleanField("باطل کردن", blank=True, null=True)
     systemID = models.CharField("شماره سیستم", default='', max_length=50, blank=True, null=True)
@@ -106,16 +128,6 @@ class AutoIncrementProduct(models.Model):
         verbose_name_plural = "شمارنده کد ثبت"
 
 
-class FactorsProduct(models.Model):
-    code = models.BigIntegerField("کد ثبت", primary_key=True, unique=True)
-    inventory = models.CharField("انبار", max_length=50, blank=True, null=True)
-    factor = models.TextField("فایل باینری فاکتور", default='', blank=True, null=True)
-    jsonData = models.JSONField("کپسول اقلام فاکتور", blank=False, null=True)
-
-    class Meta:
-        verbose_name_plural = "فاکتور ها"
-
-
 class Transmission(models.Model):
     name = models.CharField("نام کالا", default='', max_length=50, blank=False)
     sender = models.CharField("ارسال کننده", max_length=50, blank=False)
@@ -128,16 +140,6 @@ class Transmission(models.Model):
 
     class Meta:
         verbose_name_plural = "انتقالی ها"
-
-
-class ProductCheck(models.Model):
-    code = models.BigIntegerField("کد ثبت", primary_key=True, unique=True)
-    inventory = models.CharField("انبار", max_length=50, blank=True, null=True)
-    checks = models.TextField("فایل باینری حواله", default='', blank=True, null=True)
-    jsonData = models.JSONField("کپسول اقلام حواله", blank=False, null=True)
-
-    class Meta:
-        verbose_name_plural = "حواله ها"
 
 
 class AutoIncrementCheck(models.Model):
