@@ -96,6 +96,9 @@ class Handling(models.Model):
 class Consumable(models.Model):
     value = models.CharField("مقدار", max_length=50, blank=True)
 
+    def __str__(self):
+        return self.value
+
     class Meta:
         verbose_name_plural = "مورد مصرف"
 
@@ -105,6 +108,9 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = "گروه"
+
+    def __str__(self):
+        return self.value
 
 
 class AutoIncrement(models.Model):

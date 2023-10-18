@@ -7,7 +7,6 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ['code', 'name', 'category', 'scale', 'inventory']
     list_editable = ['name', 'category', 'scale', 'inventory']
     list_per_page = 10
-    actions_on_bottom = False
     list_filter = ['category', 'inventory']
     search_fields = (
         "code",
@@ -19,7 +18,6 @@ class AllProductsAdmin(admin.ModelAdmin):
     list_display = ['product', 'name', 'category', 'document_type', 'systemID',
                     'document_code', 'date', 'operator', 'scale', 'operator', 'afterOperator', 'consumable',
                     'buyer', 'seller', 'receiver', 'amendment', 'inventory']
-    actions_on_bottom = False
     list_per_page = 20
     list_filter = ['consumable', 'operator', 'document_type', 'product__inventory', 'product__category']
     search_fields = (
@@ -31,7 +29,6 @@ class AllProductsAdmin(admin.ModelAdmin):
 
 class FactorsProductAdmin(admin.ModelAdmin):
     list_display = ['code', 'inventory']
-    actions_on_bottom = False
     list_per_page = 20
     list_filter = ['inventory']
     search_fields = (
@@ -41,11 +38,40 @@ class FactorsProductAdmin(admin.ModelAdmin):
 
 class ProductCheckAdmin(admin.ModelAdmin):
     list_display = ['code', 'inventory']
-    actions_on_bottom = False
     list_per_page = 20
     list_filter = ['inventory']
     search_fields = (
         "code",
+    )
+
+
+class AutoIncrementProductAdmin(admin.ModelAdmin):
+    list_display = ['inventory', 'increment']
+    list_filter = ['inventory']
+    list_editable = ['increment']
+
+
+class AutoIncrementProductFactorAdmin(admin.ModelAdmin):
+    list_display = ['inventory', 'increment']
+    list_filter = ['inventory']
+    list_editable = ['increment']
+
+
+class AutoIncrementProductCheckAdmin(admin.ModelAdmin):
+    list_display = ['inventory', 'increment']
+    list_filter = ['inventory']
+    list_editable = ['increment']
+
+
+class TransmissionAdmin(admin.ModelAdmin):
+    list_display = ['name', 'sender', 'receiver', 'input', 'scale', 'date', 'category', 'systemID']
+    list_per_page = 20
+    list_filter = ['category']
+    search_fields = (
+        "name",
+        "sender",
+        "receiver",
+        "systemID",
     )
 
 
@@ -57,9 +83,9 @@ admin.site.register(Handling)
 admin.site.register(AutoIncrementFactor)
 admin.site.register(Consumable)
 admin.site.register(Category)
-admin.site.register(AutoIncrementProductFactor)
-admin.site.register(AutoIncrementProduct)
+admin.site.register(AutoIncrementProductFactor, AutoIncrementProductFactorAdmin)
+admin.site.register(AutoIncrementProduct, AutoIncrementProductAdmin)
 admin.site.register(FactorsProduct, FactorsProductAdmin)
-admin.site.register(AutoIncrementProductCheck)
+admin.site.register(AutoIncrementProductCheck, AutoIncrementProductCheckAdmin)
 admin.site.register(ProductCheck, ProductCheckAdmin)
-admin.site.register(Transmission)
+admin.site.register(Transmission, TransmissionAdmin)
