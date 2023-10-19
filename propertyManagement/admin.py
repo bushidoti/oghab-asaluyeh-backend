@@ -11,6 +11,7 @@ class PersonAdmin(admin.ModelAdmin):
     list_filter = ['office', 'type', 'sex']
     search_fields = (
         "national_id",
+        "full_name",
         "id",
         "caseNumber",
     )
