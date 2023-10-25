@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
-from authentification.models import Employee, Maintenance
+from authentification.models import *
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -19,4 +19,10 @@ class EmployeeSerializer(serializers.ModelSerializer):
 class MaintenanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Maintenance
+        fields = '__all__'
+
+
+class BannerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Banner
         fields = '__all__'

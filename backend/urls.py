@@ -2,8 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from rest_framework_simplejwt import views as jwt_views
-
-from authentification.views import UserApi, EmployeeApi, MaintenanceApi
+from authentification.views import *
 from documentManagement.views import DocumentApi
 from propertyManagement.views import PersonApi, PropertyApi
 from warhouse.views import *
@@ -29,6 +28,7 @@ router.register(r'airportvehicle', AirportVehicleApi, 'airportvehicle')
 router.register(r'airplane', AirplaneApi, 'airplane')
 router.register(r'officevehicle', OfficeVehicleApi, 'officevehicle')
 router.register(r'airportfurniture', AirportFurnitureApi, 'airportfurniture')
+router.register(r'banner', BannerApi, 'banner')
 router.register(r'officefurniture', OfficeFurnitureApi, 'officefurniture')
 router.register(r'digitalfurniture', DigitalFurnitureApi, 'digitalfurniture')
 router.register(r'checksproduct', ChecksProductApi, 'checksproduct')

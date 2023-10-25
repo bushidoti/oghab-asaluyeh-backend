@@ -2,12 +2,11 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-from authentification.models import Employee, Maintenance
+from authentification.models import Employee, Maintenance, Banner
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import viewsets
 from django.contrib.auth.models import User
-
-from authentification.serializer import UserSerializer, EmployeeSerializer, MaintenanceSerializer
+from authentification.serializer import UserSerializer, EmployeeSerializer, MaintenanceSerializer, BannerSerializer
 
 
 class FullNameView(APIView):
@@ -58,12 +57,15 @@ class UserApi(viewsets.ModelViewSet):
 
 
 class EmployeeApi(viewsets.ModelViewSet):
-
     serializer_class = EmployeeSerializer
     queryset = Employee.objects.all()
 
 
 class MaintenanceApi(viewsets.ModelViewSet):
-
     serializer_class = MaintenanceSerializer
     queryset = Maintenance.objects.all()
+
+
+class BannerApi(viewsets.ModelViewSet):
+    serializer_class = BannerSerializer
+    queryset = Banner.objects.all()

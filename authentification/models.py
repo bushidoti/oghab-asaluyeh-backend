@@ -14,3 +14,10 @@ class Maintenance(models.Model):
 
     class Meta:
         verbose_name_plural = "حالت تعمیر"
+
+
+class Banner(models.Model):
+    message = models.TextField(verbose_name='متن')
+
+    class Meta:
+        verbose_name_plural = "متن بنر"
