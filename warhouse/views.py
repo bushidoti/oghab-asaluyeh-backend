@@ -1,5 +1,5 @@
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
-
 from .serializer import *
 from .models import *
 import django_filters
@@ -9,6 +9,11 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.permissions import BasePermission
 from django_filters.fields import CSVWidget, MultipleChoiceField
 from django_filters import rest_framework as df_filters
+
+
+class CustomPageNumberPagination(PageNumberPagination):
+    page_size_query_param = 'size'
+    page_query_param = 'page'
 
 
 class MyPermission(BasePermission):
@@ -69,7 +74,7 @@ class ProductFilter(django_filters.rest_framework.FilterSet):
 class ProductApi(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, MyPermission]
     perm_slug = "warhouse.product"
-
+    pagination_class = CustomPageNumberPagination
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
@@ -125,7 +130,7 @@ class AllProductstFilter(django_filters.rest_framework.FilterSet):
 class AllProductstApi(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, MyPermission]
     perm_slug = "warhouse.allproducts"
-
+    pagination_class = CustomPageNumberPagination
     serializer_class = AllProductsSerializer
     queryset = AllProducts.objects.all()
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]

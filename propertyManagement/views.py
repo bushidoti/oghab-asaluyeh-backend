@@ -1,6 +1,7 @@
 import django_filters
-from rest_framework import viewsets, status
+from rest_framework import viewsets
 from rest_framework.exceptions import MethodNotAllowed
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 
 from .serializer import PersonSerializer, PropertySerializer
@@ -8,6 +9,11 @@ from .models import Person, Property
 from rest_framework.permissions import BasePermission
 from django_filters.fields import CSVWidget, MultipleChoiceField
 from django_filters import rest_framework as df_filters
+
+
+class CustomPageNumberPagination(PageNumberPagination):
+    page_size_query_param = 'size'
+    page_query_param = 'page'
 
 
 class MyPermission(BasePermission):
@@ -73,7 +79,7 @@ class PersonFilter(django_filters.rest_framework.FilterSet):
 class PersonApi(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, MyPermission]
     perm_slug = "propertyManagement.person"
-
+    pagination_class = CustomPageNumberPagination
     serializer_class = PersonSerializer
     queryset = Person.objects.all()
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
