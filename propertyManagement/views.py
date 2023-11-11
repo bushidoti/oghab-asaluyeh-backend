@@ -3,9 +3,8 @@ from rest_framework import viewsets
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
-
-from .serializer import PersonSerializer, PropertySerializer
-from .models import Person, Property
+from .serializer import PersonSerializer, MovableSerializer, ImmovableSerializer
+from .models import Person, Movable, Immovable
 from rest_framework.permissions import BasePermission
 from django_filters.fields import CSVWidget, MultipleChoiceField
 from django_filters import rest_framework as df_filters
@@ -86,13 +85,72 @@ class PersonApi(viewsets.ModelViewSet):
     filterset_class = PersonFilter
 
 
-class PropertyApi(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, MyPermission]
-    perm_slug = "propertyManagement.property"
+class MovableFilter(django_filters.rest_framework.FilterSet):
+    name = django_filters.rest_framework.CharFilter(field_name='name', lookup_expr='contains')
+    typeVehicle = MultipleFilter(
+        lookup_expr="contains",
+        field_name="typeVehicle",
+        widget=CSVWidget
+    )
+    docNumber = django_filters.rest_framework.CharFilter(field_name='docNumber', lookup_expr='contains')
+    motorNumber = django_filters.rest_framework.CharFilter(field_name='motorNumber', lookup_expr='contains')
+    chassisNumber = django_filters.rest_framework.CharFilter(field_name='chassisNumber', lookup_expr='contains')
+    owner = django_filters.rest_framework.CharFilter(field_name='owner', lookup_expr='contains')
+    madeOf = django_filters.rest_framework.CharFilter(field_name='madeOf', lookup_expr='exact')
+    id = django_filters.rest_framework.NumberFilter(field_name='id', lookup_expr='contains')
+    buyer = django_filters.rest_framework.NumberFilter(field_name='buyer', lookup_expr='contains')
+    model = django_filters.rest_framework.NumberFilter(field_name='model', lookup_expr='contains')
+    gasCard = django_filters.rest_framework.NumberFilter(field_name='gasCard', lookup_expr='contains')
+    carCard = django_filters.rest_framework.NumberFilter(field_name='carCard', lookup_expr='contains')
+    paperDoc = django_filters.rest_framework.NumberFilter(field_name='paperDoc', lookup_expr='contains')
+    insurancePaper = django_filters.rest_framework.NumberFilter(field_name='insurancePaper', lookup_expr='contains')
+    clearedStatus = django_filters.rest_framework.BooleanFilter(field_name='clearedStatus', lookup_expr='contains')
+    soldStatus = django_filters.rest_framework.BooleanFilter(field_name='soldStatus', lookup_expr='contains')
 
-    serializer_class = PropertySerializer
-    queryset = Property.objects.all()
+    class Meta:
+        model = Movable
+        fields = ['name', 'typeVehicle', 'docNumber', 'motorNumber', 'chassisNumber', 'owner',
+                  'madeOf', 'id', 'buyer', 'model', 'gasCard', 'carCard', 'paperDoc', 'insurancePaper',
+                  'clearedStatus', 'soldStatus']
+
+
+class MovableApi(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, MyPermission]
+    perm_slug = "propertyManagement.movable"
+    serializer_class = MovableSerializer
+    pagination_class = CustomPageNumberPagination
+    queryset = Movable.objects.all()
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
-    filterset_fields = ['name', 'docNumber', 'landlord', 'madeOf', 'plateMotor', 'id',
-                        'typeProperty', 'part1plate', 'part2plate', 'part3plate', 'cityPlate', 'addressChassis',
-                        'modelMeter', 'descriptionLocation', 'soldStatus']
+    filterset_class = MovableFilter
+
+
+class ImmovableFilter(django_filters.rest_framework.FilterSet):
+    name = django_filters.rest_framework.CharFilter(field_name='name', lookup_expr='contains')
+    typeEstate = MultipleFilter(
+        lookup_expr="contains",
+        field_name="typeEstate",
+        widget=CSVWidget
+    )
+    docNumber = django_filters.rest_framework.CharFilter(field_name='docNumber', lookup_expr='contains')
+    landlord = django_filters.rest_framework.CharFilter(field_name='landlord', lookup_expr='contains')
+    madeOf = django_filters.rest_framework.CharFilter(field_name='madeOf', lookup_expr='exact')
+    id = django_filters.rest_framework.NumberFilter(field_name='id', lookup_expr='contains')
+    buyer = django_filters.rest_framework.NumberFilter(field_name='buyer', lookup_expr='contains')
+    plate = django_filters.rest_framework.NumberFilter(field_name='plate', lookup_expr='contains')
+    clearedStatus = django_filters.rest_framework.BooleanFilter(field_name='clearedStatus', lookup_expr='contains')
+    soldStatus = django_filters.rest_framework.BooleanFilter(field_name='soldStatus', lookup_expr='contains')
+
+    class Meta:
+        model = Immovable
+        fields = ['name', 'typeEstate', 'docNumber', 'plate', 'landlord',
+                  'madeOf', 'id', 'buyer', 'clearedStatus', 'soldStatus']
+
+
+class ImmovableApi(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, MyPermission]
+    perm_slug = "propertyManagement.immovable"
+    pagination_class = CustomPageNumberPagination
+    serializer_class = ImmovableSerializer
+    queryset = Immovable.objects.all()
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filterset_class = ImmovableFilter

@@ -4,7 +4,7 @@ from rest_framework import routers
 from rest_framework_simplejwt import views as jwt_views
 from authentification.views import *
 from documentManagement.views import DocumentApi
-from propertyManagement.views import PersonApi, PropertyApi
+from propertyManagement.views import PersonApi, MovableApi, ImmovableApi
 from warhouse.views import *
 from property.views import *
 from django.conf import settings
@@ -13,11 +13,12 @@ from django.conf.urls.static import static
 router = routers.DefaultRouter()
 router.register(r'documents', DocumentApi, 'documents')
 router.register(r'persons', PersonApi, 'persons')
-router.register(r'properties', PropertyApi, 'properties')
 router.register(r'employee', EmployeeApi, 'employee')
 router.register(r'user', UserApi, 'user')
 router.register(r'product', ProductApi, 'product')
 router.register(r'allproducts', AllProductstApi, 'allproducts')
+router.register(r'movable', MovableApi, 'movable')
+router.register(r'immovable', ImmovableApi, 'immovable')
 router.register(r'autoIncrement', AutoIncrementApi, 'autoIncrement')
 router.register(r'autoIncrementcheck', AutoIncrementCheckApi, 'autoIncrementcheck')
 router.register(r'autoIncrementfactor', AutoIncrementFactorApi, 'autoIncrementfactor')

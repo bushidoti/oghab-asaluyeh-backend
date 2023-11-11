@@ -45,29 +45,53 @@ class Person(models.Model):
         verbose_name_plural = "اشخاص"
 
 
-class Property(models.Model):
-    typeProperty = models.CharField(max_length=50, blank=False, null=True)
-    type_form = models.BooleanField(blank=False, null=True, max_length=50)
-    name = models.CharField(max_length=50, blank=False, null=True)
-    docNumber = models.CharField(max_length=50, blank=True, null=True)
-    plateMotor = models.CharField(max_length=50, blank=True, null=True)
-    addressChassis = models.CharField(max_length=500, blank=True, null=True)
-    landlord = models.CharField(max_length=50, blank=True, null=True)
-    modelMeter = models.CharField(max_length=50, blank=True, null=True)
-    madeOf = models.CharField(max_length=50, blank=True, null=True)
-    part1plate = models.CharField(max_length=2, blank=True, null=True)
-    part2plate = models.CharField(max_length=25, blank=True, null=True)
-    part3plate = models.CharField(max_length=3, blank=True, null=True)
-    cityPlate = models.CharField(max_length=2, blank=True, null=True)
-    descriptionLocation = models.CharField(max_length=500, blank=True, null=True)
-    paperDoc = models.CharField(max_length=50, blank=True, null=True)
-    insurancePaper = models.CharField(max_length=50, blank=True, null=True)
-    gasCard = models.CharField(max_length=50, blank=True, null=True)
-    carCard = models.CharField(max_length=50, blank=True, null=True)
-    description = models.CharField(max_length=500, blank=True, null=True)
-    soldDate = models.CharField(max_length=50, blank=True, null=True)
-    buyer = models.CharField(max_length=50, blank=True, null=True)
-    soldStatus = models.BooleanField(default=False, blank=True, null=True)
+class Immovable(models.Model):
+    typeEstate = models.CharField('نوع', max_length=50, blank=False, null=True)
+    name = models.CharField('نام', max_length=50, blank=False, null=True)
+    docNumber = models.CharField('شماره سند', max_length=50, blank=True, null=True)
+    plate = models.CharField('پلاک', max_length=50, blank=True, null=True)
+    address = models.CharField('آدرس', max_length=500, blank=True, null=True)
+    landlord = models.CharField('صاحب', max_length=50, blank=True, null=True)
+    meter = models.CharField('متراژ', max_length=50, blank=True, null=True)
+    location = models.CharField('محل', max_length=50, blank=True, null=True)
+    madeOf = models.CharField('سال ساخت', max_length=50, blank=True, null=True)
+    description = models.CharField('توضیحات', max_length=500, blank=True, null=True)
+    soldDate = models.CharField('تاریخ فروش', max_length=50, blank=True, null=True)
+    buyer = models.CharField('خریدار', max_length=50, blank=True, null=True)
+    soldStatus = models.BooleanField('وضعیت فروش', default=False, blank=True, null=True)
+    doc_1 = models.TextField(blank=True, null=True)
+    doc_2 = models.TextField(blank=True, null=True)
+    doc_3 = models.TextField(blank=True, null=True)
+    doc_4 = models.TextField(blank=True, null=True)
+    doc_5 = models.TextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "غیر منقول"
+
+
+class Movable(models.Model):
+    typeVehicle = models.CharField('نوع', max_length=50, blank=False, null=True)
+    name = models.CharField('نام', max_length=50, blank=False, null=True)
+    docNumber = models.CharField('شماره سند', max_length=50, blank=True, null=True)
+    motorNumber = models.CharField('شماره موتور', max_length=50, blank=True, null=True)
+    chassisNumber = models.CharField('شماره شاسی', max_length=500, blank=True, null=True)
+    owner = models.CharField('صاحب', max_length=50, blank=True, null=True)
+    model = models.CharField('مدل', max_length=50, blank=True, null=True)
+    madeOf = models.CharField('سال ساخت', max_length=50, blank=True, null=True)
+    part1plate = models.CharField('چپ', max_length=2, blank=True, null=True)
+    part2plate = models.CharField('راست', max_length=25, blank=True, null=True)
+    part3plate = models.CharField('سریال', max_length=3, blank=True, null=True)
+    location = models.CharField('محل', max_length=50, blank=True, null=True)
+    cityPlate = models.CharField('شهر', max_length=2, blank=True, null=True)
+    descriptionLocation = models.CharField('محل استقرار', max_length=500, blank=True, null=True)
+    paperDoc = models.CharField('برگه سند', max_length=50, blank=True, null=True)
+    insurancePaper = models.CharField('بیمه نامه', max_length=50, blank=True, null=True)
+    gasCard = models.CharField('کارت سوخت', max_length=50, blank=True, null=True)
+    carCard = models.CharField('کارت ماشین', max_length=50, blank=True, null=True)
+    description = models.CharField('توضیحات', max_length=500, blank=True, null=True)
+    soldDate = models.CharField('تاریخ فروش', max_length=50, blank=True, null=True)
+    buyer = models.CharField('خریدار', max_length=50, blank=True, null=True)
+    soldStatus = models.BooleanField('وضعیت فروش', default=False, blank=True, null=True)
     saleFactorFile = models.TextField(blank=True, null=True)
     insurancePaperFile = models.TextField(blank=True, null=True)
     carCardFile = models.TextField(blank=True, null=True)
@@ -75,4 +99,4 @@ class Property(models.Model):
     gasCardFile = models.TextField(blank=True, null=True)
 
     class Meta:
-        verbose_name_plural = "اموال"
+        verbose_name_plural = "منقول"

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Property, Person
+from .models import Immovable, Person , Movable
 
 
 class DynamicFieldsModelSerializer(serializers.ModelSerializer):
@@ -17,9 +17,15 @@ class DynamicFieldsModelSerializer(serializers.ModelSerializer):
                 self.fields.pop(field_name)
 
 
-class PropertySerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
+class MovableSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
     class Meta:
-        model = Property
+        model = Movable
+        fields = '__all__'
+
+
+class ImmovableSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
+    class Meta:
+        model = Immovable
         fields = '__all__'
 
 
