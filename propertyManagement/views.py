@@ -98,6 +98,8 @@ class MovableFilter(django_filters.rest_framework.FilterSet):
         widget=CSVWidget
     )
     docNumber = django_filters.rest_framework.CharFilter(field_name='docNumber', lookup_expr='contains')
+    descriptionLocation = django_filters.rest_framework.CharFilter(field_name='descriptionLocation', lookup_expr='contains')
+    description = django_filters.rest_framework.CharFilter(field_name='description', lookup_expr='contains')
     motorNumber = django_filters.rest_framework.CharFilter(field_name='motorNumber', lookup_expr='contains')
     chassisNumber = django_filters.rest_framework.CharFilter(field_name='chassisNumber', lookup_expr='contains')
     owner = django_filters.rest_framework.CharFilter(field_name='owner', lookup_expr='contains')
@@ -114,7 +116,7 @@ class MovableFilter(django_filters.rest_framework.FilterSet):
 
     class Meta:
         model = Movable
-        fields = ['name', 'typeVehicle', 'docNumber', 'location', 'motorNumber', 'chassisNumber', 'owner',
+        fields = ['name', 'typeVehicle', 'descriptionLocation', 'description', 'docNumber', 'location', 'motorNumber', 'chassisNumber', 'owner',
                   'madeOf', 'id', 'buyer', 'model', 'gasCard', 'carCard', 'paperDoc', 'insurancePaper',
                   'clearedStatus', 'soldStatus']
 
@@ -147,12 +149,13 @@ class ImmovableFilter(django_filters.rest_framework.FilterSet):
     id = django_filters.rest_framework.NumberFilter(field_name='id', lookup_expr='contains')
     buyer = django_filters.rest_framework.NumberFilter(field_name='buyer', lookup_expr='contains')
     plate = django_filters.rest_framework.NumberFilter(field_name='plate', lookup_expr='contains')
+    description = django_filters.rest_framework.NumberFilter(field_name='plate', lookup_expr='contains')
     clearedStatus = django_filters.rest_framework.BooleanFilter(field_name='clearedStatus', lookup_expr='contains')
     soldStatus = django_filters.rest_framework.BooleanFilter(field_name='soldStatus', lookup_expr='contains')
 
     class Meta:
         model = Immovable
-        fields = ['name', 'typeEstate', 'docNumber', 'plate', 'landlord',
+        fields = ['name', 'typeEstate', 'description', 'docNumber', 'plate', 'landlord',
                   'madeOf', 'id', 'buyer', 'location', 'clearedStatus', 'soldStatus']
 
 
