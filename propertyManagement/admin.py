@@ -36,7 +36,7 @@ class ImmovabledAmin(admin.ModelAdmin):
 
 class MovableAdmin(admin.ModelAdmin):
     list_display = ['id', 'typeVehicle', 'name', 'docNumber', 'motorNumber', 'chassisNumber', 'descriptionLocation',
-                    'part1plate', 'cityPlate', 'part2plate', 'part3plate',
+                    'part3plate', 'part2plate', 'cityPlate', 'part1plate',
                     'description', 'owner', 'model', 'location', 'madeOf', 'paperDoc', 'insurancePaper', 'gasCard',
                     'carCard', 'soldDate', 'buyer',
                     'soldStatus']
