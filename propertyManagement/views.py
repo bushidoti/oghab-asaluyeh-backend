@@ -98,25 +98,27 @@ class MovableFilter(django_filters.rest_framework.FilterSet):
         widget=CSVWidget
     )
     docNumber = django_filters.rest_framework.CharFilter(field_name='docNumber', lookup_expr='contains')
-    descriptionLocation = django_filters.rest_framework.CharFilter(field_name='descriptionLocation', lookup_expr='contains')
+    descriptionLocation = django_filters.rest_framework.CharFilter(field_name='descriptionLocation',
+                                                                   lookup_expr='contains')
     description = django_filters.rest_framework.CharFilter(field_name='description', lookup_expr='contains')
     motorNumber = django_filters.rest_framework.CharFilter(field_name='motorNumber', lookup_expr='contains')
     chassisNumber = django_filters.rest_framework.CharFilter(field_name='chassisNumber', lookup_expr='contains')
     owner = django_filters.rest_framework.CharFilter(field_name='owner', lookup_expr='contains')
     madeOf = django_filters.rest_framework.CharFilter(field_name='madeOf', lookup_expr='exact')
     id = django_filters.rest_framework.NumberFilter(field_name='id', lookup_expr='contains')
-    buyer = django_filters.rest_framework.NumberFilter(field_name='buyer', lookup_expr='contains')
-    model = django_filters.rest_framework.NumberFilter(field_name='model', lookup_expr='contains')
-    gasCard = django_filters.rest_framework.NumberFilter(field_name='gasCard', lookup_expr='contains')
-    carCard = django_filters.rest_framework.NumberFilter(field_name='carCard', lookup_expr='contains')
-    paperDoc = django_filters.rest_framework.NumberFilter(field_name='paperDoc', lookup_expr='contains')
-    insurancePaper = django_filters.rest_framework.NumberFilter(field_name='insurancePaper', lookup_expr='contains')
+    buyer = django_filters.rest_framework.CharFilter(field_name='buyer', lookup_expr='contains')
+    model = django_filters.rest_framework.CharFilter(field_name='model', lookup_expr='contains')
+    gasCard = django_filters.rest_framework.CharFilter(field_name='gasCard', lookup_expr='contains')
+    carCard = django_filters.rest_framework.CharFilter(field_name='carCard', lookup_expr='contains')
+    paperDoc = django_filters.rest_framework.CharFilter(field_name='paperDoc', lookup_expr='contains')
+    insurancePaper = django_filters.rest_framework.CharFilter(field_name='insurancePaper', lookup_expr='contains')
     clearedStatus = django_filters.rest_framework.BooleanFilter(field_name='clearedStatus', lookup_expr='contains')
     soldStatus = django_filters.rest_framework.BooleanFilter(field_name='soldStatus', lookup_expr='contains')
 
     class Meta:
         model = Movable
-        fields = ['name', 'typeVehicle', 'descriptionLocation', 'description', 'docNumber', 'location', 'motorNumber', 'chassisNumber', 'owner',
+        fields = ['name', 'typeVehicle', 'descriptionLocation', 'description', 'docNumber', 'location', 'motorNumber',
+                  'chassisNumber', 'owner',
                   'madeOf', 'id', 'buyer', 'model', 'gasCard', 'carCard', 'paperDoc', 'insurancePaper',
                   'clearedStatus', 'soldStatus']
 
@@ -147,9 +149,9 @@ class ImmovableFilter(django_filters.rest_framework.FilterSet):
     landlord = django_filters.rest_framework.CharFilter(field_name='landlord', lookup_expr='contains')
     madeOf = django_filters.rest_framework.CharFilter(field_name='madeOf', lookup_expr='exact')
     id = django_filters.rest_framework.NumberFilter(field_name='id', lookup_expr='contains')
-    buyer = django_filters.rest_framework.NumberFilter(field_name='buyer', lookup_expr='contains')
-    plate = django_filters.rest_framework.NumberFilter(field_name='plate', lookup_expr='contains')
-    description = django_filters.rest_framework.NumberFilter(field_name='plate', lookup_expr='contains')
+    buyer = django_filters.rest_framework.CharFilter(field_name='buyer', lookup_expr='contains')
+    plate = django_filters.rest_framework.CharFilter(field_name='plate', lookup_expr='contains')
+    description = django_filters.rest_framework.CharFilter(field_name='description', lookup_expr='contains')
     clearedStatus = django_filters.rest_framework.BooleanFilter(field_name='clearedStatus', lookup_expr='contains')
     soldStatus = django_filters.rest_framework.BooleanFilter(field_name='soldStatus', lookup_expr='contains')
 
