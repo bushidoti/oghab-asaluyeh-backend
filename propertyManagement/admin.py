@@ -22,7 +22,7 @@ class ImmovabledAmin(admin.ModelAdmin):
                     'address', 'landlord', 'meter', 'location', 'madeOf', 'soldDate', 'buyer',
                     'soldStatus']
     list_per_page = 20
-    list_filter = ['typeEstate']
+    list_filter = ['typeEstate', 'location']
     search_fields = (
         "docNumber",
         "name",
@@ -41,7 +41,7 @@ class MovableAdmin(admin.ModelAdmin):
                     'carCard', 'soldDate', 'buyer',
                     'soldStatus']
     list_per_page = 20
-    list_filter = ['typeVehicle']
+    list_filter = ['typeVehicle', 'location']
     search_fields = (
         "docNumber",
         "name",

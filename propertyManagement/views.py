@@ -92,6 +92,11 @@ class MovableFilter(django_filters.rest_framework.FilterSet):
         field_name="typeVehicle",
         widget=CSVWidget
     )
+    location = MultipleFilter(
+        lookup_expr="contains",
+        field_name="location",
+        widget=CSVWidget
+    )
     docNumber = django_filters.rest_framework.CharFilter(field_name='docNumber', lookup_expr='contains')
     motorNumber = django_filters.rest_framework.CharFilter(field_name='motorNumber', lookup_expr='contains')
     chassisNumber = django_filters.rest_framework.CharFilter(field_name='chassisNumber', lookup_expr='contains')
@@ -109,7 +114,7 @@ class MovableFilter(django_filters.rest_framework.FilterSet):
 
     class Meta:
         model = Movable
-        fields = ['name', 'typeVehicle', 'docNumber', 'motorNumber', 'chassisNumber', 'owner',
+        fields = ['name', 'typeVehicle', 'docNumber', 'location', 'motorNumber', 'chassisNumber', 'owner',
                   'madeOf', 'id', 'buyer', 'model', 'gasCard', 'carCard', 'paperDoc', 'insurancePaper',
                   'clearedStatus', 'soldStatus']
 
@@ -131,6 +136,11 @@ class ImmovableFilter(django_filters.rest_framework.FilterSet):
         field_name="typeEstate",
         widget=CSVWidget
     )
+    location = MultipleFilter(
+        lookup_expr="contains",
+        field_name="location",
+        widget=CSVWidget
+    )
     docNumber = django_filters.rest_framework.CharFilter(field_name='docNumber', lookup_expr='contains')
     landlord = django_filters.rest_framework.CharFilter(field_name='landlord', lookup_expr='contains')
     madeOf = django_filters.rest_framework.CharFilter(field_name='madeOf', lookup_expr='exact')
@@ -143,7 +153,7 @@ class ImmovableFilter(django_filters.rest_framework.FilterSet):
     class Meta:
         model = Immovable
         fields = ['name', 'typeEstate', 'docNumber', 'plate', 'landlord',
-                  'madeOf', 'id', 'buyer', 'clearedStatus', 'soldStatus']
+                  'madeOf', 'id', 'buyer', 'location', 'clearedStatus', 'soldStatus']
 
 
 class ImmovableApi(viewsets.ModelViewSet):
