@@ -8,13 +8,6 @@ class Product(models.Model):
     category = models.CharField("گروه کالا", max_length=50, blank=True, null=True)
     scale = models.CharField("مقیاس", max_length=50, blank=True, null=True)
     inventory = models.CharField("انبار", max_length=50, blank=True, null=True)
-    operator = models.CharField("عملیات", max_length=50, blank=True, null=True)
-    date = models.CharField("تاریخ", max_length=50, blank=True, null=True)
-    input = models.BigIntegerField("ورودی", blank=True, null=True)
-    output = models.BigIntegerField("خروجی", blank=True, null=True)
-    left_stock = models.BigIntegerField("مانده", default=False, blank=True, null=True)
-    document_type = models.CharField("نوع مدرک", max_length=50, blank=True, null=True)
-    document_code = models.CharField("شناسه مدرک", max_length=50, blank=True, null=True)
     recycle_status = models.CharField("وضعیت انبارگردانی", max_length=50, blank=True, null=True)
     recycle_date = models.CharField("تاریخ آخرین انبار گردانی", max_length=50, blank=True, null=True)
     description = models.TextField("توضیحت", max_length=50, blank=True, null=True)
@@ -51,7 +44,6 @@ class AllProducts(models.Model):
     output = models.FloatField("حروجی", blank=True, null=True)
     afterOperator = models.FloatField("موجودی", blank=True, null=True)
     operator = models.CharField("عملیات", default='', max_length=50, blank=True, null=True)
-    scale = models.CharField("مقیاس", default='', max_length=50, blank=True, null=True)
     date = models.CharField("تاریخ", default='', max_length=50, blank=True, null=True)
     buyer = models.CharField("خریدار", default='', max_length=50, blank=True, null=True)
     seller = models.CharField("فروشنده", default='', max_length=50, blank=True, null=True)
@@ -59,8 +51,6 @@ class AllProducts(models.Model):
     document_type = models.CharField("نوع مدرک", default='', max_length=50, blank=True, null=True)
     document_code = models.CharField("شناسه مدرک", default='', max_length=150, blank=True, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="کالای مربوط به")
-    factor = models.TextField(default='فاکتور', blank=True, null=True)
-    checkBill = models.TextField("حواله", blank=True, null=True)
     factorCode = models.ForeignKey(FactorsProduct, on_delete=models.CASCADE, blank=True, null=True)
     checkCode = models.ForeignKey(ProductCheck, on_delete=models.CASCADE, blank=True, null=True)
     amendment = models.TextField("اصلاحیه", default='', blank=True, null=True)
@@ -76,12 +66,16 @@ class AllProducts(models.Model):
     def name(self):
         return self.product.name
 
+    def scale(self):
+        return self.product.scale
+
     def category(self):
         return self.product.category
 
     inventory.short_description = 'انبار'
     category.short_description = 'گروه'
     name.short_description = 'نام کالا'
+    name.scale = 'مقیاس'
 
 
 class Handling(models.Model):
@@ -113,19 +107,6 @@ class Category(models.Model):
         return self.value
 
 
-class AutoIncrement(models.Model):
-    oghab101 = models.BigIntegerField(validators=[MaxValueValidator(1019999)], blank=True, null=True)
-    oghab102 = models.BigIntegerField(validators=[MaxValueValidator(1029999)], blank=True, null=True)
-    oghab103 = models.BigIntegerField(validators=[MaxValueValidator(1039999)], blank=True, null=True)
-    oghab104 = models.BigIntegerField(validators=[MaxValueValidator(1049999)], blank=True, null=True)
-    oghab105 = models.BigIntegerField(validators=[MaxValueValidator(1059999)], blank=True, null=True)
-    oghab106 = models.BigIntegerField(validators=[MaxValueValidator(1069999)], blank=True, null=True)
-    oghab107 = models.BigIntegerField(validators=[MaxValueValidator(1079999)], blank=True, null=True)
-
-    class Meta:
-        verbose_name_plural = "شمارنده کد ثبت"
-
-
 class AutoIncrementProduct(models.Model):
     increment = models.BigIntegerField("شمارنده", blank=True, null=True)
     inventory = models.CharField("انبار", max_length=50, blank=True, null=True)
@@ -146,32 +127,6 @@ class Transmission(models.Model):
 
     class Meta:
         verbose_name_plural = "انتقالی ها"
-
-
-class AutoIncrementCheck(models.Model):
-    oghab101 = models.BigIntegerField(blank=True, null=True)
-    oghab102 = models.BigIntegerField(blank=True, null=True)
-    oghab103 = models.BigIntegerField(blank=True, null=True)
-    oghab104 = models.BigIntegerField(blank=True, null=True)
-    oghab105 = models.BigIntegerField(blank=True, null=True)
-    oghab106 = models.BigIntegerField(blank=True, null=True)
-    oghab107 = models.BigIntegerField(blank=True, null=True)
-
-    class Meta:
-        verbose_name_plural = "شمارنده کد حواله"
-
-
-class AutoIncrementFactor(models.Model):
-    systemID_01 = models.BigIntegerField(blank=True, null=True)
-    systemID_02 = models.BigIntegerField(blank=True, null=True)
-    systemID_03 = models.BigIntegerField(blank=True, null=True)
-    systemID_04 = models.BigIntegerField(blank=True, null=True)
-    systemID_05 = models.BigIntegerField(blank=True, null=True)
-    systemID_06 = models.BigIntegerField(blank=True, null=True)
-    systemID_07 = models.BigIntegerField(blank=True, null=True)
-
-    class Meta:
-        verbose_name_plural = "شمارنده کد فاکتور"
 
 
 class AutoIncrementProductFactor(models.Model):

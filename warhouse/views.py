@@ -201,12 +201,6 @@ class CategoryApi(viewsets.ModelViewSet):
     queryset = Category.objects.all()
 
 
-class AutoIncrementApi(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, MyPermission]
-    perm_slug = "warhouse.allproducts"
-
-    serializer_class = AutoIncrementSerializer
-    queryset = AutoIncrement.objects.all()
 
 
 class AutoIncrementProductApi(viewsets.ModelViewSet):
@@ -239,20 +233,6 @@ class AutoIncrementProductCheckApi(viewsets.ModelViewSet):
     filterset_fields = ['inventory']
 
 
-class AutoIncrementCheckApi(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, MyPermission]
-    perm_slug = "warhouse.allproducts"
-
-    serializer_class = AutoIncrementCheckSerializer
-    queryset = AutoIncrementCheck.objects.all()
-
-
-class AutoIncrementFactorApi(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, MyPermission]
-    perm_slug = "warhouse.allproducts"
-
-    serializer_class = AutoIncrementFactorSerializer
-    queryset = AutoIncrementFactor.objects.all()
 
 
 class HandlingApi(viewsets.ModelViewSet):

@@ -77,10 +77,7 @@ class TransmissionAdmin(admin.ModelAdmin):
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(AllProducts, AllProductsAdmin)
-admin.site.register(AutoIncrement)
-admin.site.register(AutoIncrementCheck)
 admin.site.register(Handling)
-admin.site.register(AutoIncrementFactor)
 admin.site.register(Consumable)
 admin.site.register(Category)
 admin.site.register(AutoIncrementProductFactor, AutoIncrementProductFactorAdmin)
