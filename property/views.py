@@ -1,9 +1,11 @@
 import django_filters
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated, BasePermission
 from django_filters import rest_framework as df_filters
+from rest_framework.response import Response
+
 from .serializer import *
 from .models import *
 from django_filters.fields import CSVWidget, MultipleChoiceField
@@ -134,6 +136,17 @@ class PropertyApi(viewsets.ModelViewSet):
     queryset = Property.objects.all()
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_class = PropertyFilter
+
+    def create(self, request, *args, **kwargs):
+        is_many = isinstance(request.data, list)
+        if not is_many:
+            return super(PropertyApi, self).create(request, *args, **kwargs)
+        else:
+            serializer = self.get_serializer(data=request.data, many=True)
+            serializer.is_valid(raise_exception=True)
+            self.perform_create(serializer)
+            headers = self.get_success_headers(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
 class RepairedPropertyApi(viewsets.ModelViewSet):

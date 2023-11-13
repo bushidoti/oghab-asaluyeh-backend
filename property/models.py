@@ -5,6 +5,7 @@ class FactorProperty(models.Model):
     code = models.BigIntegerField("کد ثبت", primary_key=True, unique=True)
     inventory = models.CharField("انبار", max_length=50, blank=True, null=True)
     factor = models.TextField("فایل باینری فاکتور", default='', blank=True, null=True)
+    jsonData = models.JSONField("کپسول اقلام فاکتور", blank=False, null=True)
 
     class Meta:
         verbose_name_plural = "فاکتور ها"
