@@ -201,8 +201,6 @@ class CategoryApi(viewsets.ModelViewSet):
     queryset = Category.objects.all()
 
 
-
-
 class AutoIncrementProductApi(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, MyPermission]
     perm_slug = "warhouse.allproducts"
@@ -231,8 +229,6 @@ class AutoIncrementProductCheckApi(viewsets.ModelViewSet):
     queryset = AutoIncrementProductCheck.objects.all()
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ['inventory']
-
-
 
 
 class HandlingApi(viewsets.ModelViewSet):

@@ -1,31 +1,52 @@
 from django.contrib import admin
 from .models import *
 
-admin.site.register(AutoIncrementProperty)
-admin.site.register(AirportEquipment)
-admin.site.register(SafetyEquipment)
-admin.site.register(AirportVehicle)
-admin.site.register(OfficeVehicle)
-admin.site.register(AirportFurniture)
-admin.site.register(DigitalFurniture)
-admin.site.register(FacilityFurniture)
-admin.site.register(OfficeFurniture)
-admin.site.register(ElectronicFurniture)
-admin.site.register(IndustrialTool)
-admin.site.register(Airplane)
-admin.site.register(NoneIndustrialTool)
-admin.site.register(Benefit)
-admin.site.register(SupportItem)
-admin.site.register(RepairedDigitalFurniture)
-admin.site.register(RepairedFacilityFurniture)
-admin.site.register(RepairedOfficeFurniture)
-admin.site.register(RepairedAirportFurniture)
-admin.site.register(RepairedElectronicFurniture)
-admin.site.register(RepairedSafetyEquipment)
-admin.site.register(RepairedAirportEquipment)
-admin.site.register(RepairedAirportVehicle)
-admin.site.register(RepairedOfficeVehicle)
-admin.site.register(RepairedIndustrialTool)
-admin.site.register(RepairedAirplane)
-admin.site.register(AutoIncrementFactor)
-admin.site.register(Factors)
+
+class AutoIncrementPropertyAdmin(admin.ModelAdmin):
+    list_display = ['inventory', 'name', 'increment']
+    list_filter = ['inventory']
+    list_editable = ['increment']
+
+
+class FactorPropertyAdmin(admin.ModelAdmin):
+    list_display = ['code', 'inventory']
+    list_per_page = 20
+    list_filter = ['inventory']
+    search_fields = (
+        "code",
+    )
+
+
+class AutoIncrementPropertyFactorAdmin(admin.ModelAdmin):
+    list_display = ['inventory', 'increment']
+    list_filter = ['inventory']
+    list_editable = ['increment']
+
+
+class PropertyAdmin(admin.ModelAdmin):
+    list_display = ['code', 'name', 'user', 'using_location', 'number', 'type_furniture', 'year_made', 'owner',
+                    'use_for',
+                    'year_buy', 'repaired_status', 'install_location', 'number_type', 'document_code', 'category',
+                    'dst_inventory', 'model', 'type_item', 'property_number', 'inventory']
+
+    list_per_page = 20
+    list_filter = ['category', 'inventory', 'type_item', 'type_furniture']
+    search_fields = (
+        "code",
+        "name",
+        "user",
+        "using_location",
+        'model',
+        'document_code',
+        'use_for',
+        'install_location',
+        'year_made',
+        'owner',
+    )
+
+
+admin.site.register(AutoIncrementProperty, AutoIncrementPropertyAdmin)
+admin.site.register(AutoIncrementPropertyFactor, AutoIncrementPropertyFactorAdmin)
+admin.site.register(FactorProperty, FactorPropertyAdmin)
+admin.site.register(Property, PropertyAdmin)
+admin.site.register(RepairedProperty)

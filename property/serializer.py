@@ -23,163 +23,25 @@ class AutoIncrementSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class AirportEquipmentSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
+class AutoIncrementPropertyFactorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = AirportEquipment
+        model = AutoIncrementPropertyFactor
         fields = '__all__'
 
 
-class SafetyEquipmentSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
+class FactorPropertySerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
     class Meta:
-        model = SafetyEquipment
+        model = FactorProperty
         fields = '__all__'
 
 
-class AirportVehicleSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
+class PropertySerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
     class Meta:
-        model = AirportVehicle
+        model = Property
         fields = '__all__'
 
 
-class AirplaneSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
+class RepairedPropertySerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
     class Meta:
-        model = Airplane
-        fields = '__all__'
-
-
-class OfficeVehicleSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
-    class Meta:
-        model = OfficeVehicle
-        fields = '__all__'
-
-
-class ElectronicFurnitureSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
-    class Meta:
-        model = ElectronicFurniture
-        fields = '__all__'
-
-
-class FacilityFurnitureSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
-    class Meta:
-        model = FacilityFurniture
-        fields = '__all__'
-
-
-class DigitalFurnitureSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
-    class Meta:
-        model = DigitalFurniture
-        fields = '__all__'
-
-
-class OfficeFurnitureSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
-    class Meta:
-        model = OfficeFurniture
-        fields = '__all__'
-
-
-class IndustrialToolSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
-    class Meta:
-        model = IndustrialTool
-        fields = '__all__'
-
-
-class NoneIndustrialToolSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
-    class Meta:
-        model = NoneIndustrialTool
-        fields = '__all__'
-
-
-class SupportItemSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
-    class Meta:
-        model = SupportItem
-        fields = '__all__'
-
-
-class BenefitSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
-    class Meta:
-        model = Benefit
-        fields = '__all__'
-
-
-class AirportFurnitureSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
-    class Meta:
-        model = AirportFurniture
-        fields = '__all__'
-
-
-class RepairedDigitalFurnitureSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = RepairedDigitalFurniture
-        fields = '__all__'
-
-
-class RepairedFacilityFurnitureSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = RepairedFacilityFurniture
-        fields = '__all__'
-
-
-class RepairedOfficeFurnitureSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = RepairedOfficeFurniture
-        fields = '__all__'
-
-
-class RepairedAirportFurnitureSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = RepairedAirportFurniture
-        fields = '__all__'
-
-
-class RepairedElectronicFurnitureSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = RepairedElectronicFurniture
-        fields = '__all__'
-
-
-class RepairedSafetyEquipmentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = RepairedSafetyEquipment
-        fields = '__all__'
-
-
-class RepairedAirportEquipmentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = RepairedAirportEquipment
-        fields = '__all__'
-
-
-class RepairedAirportVehicleSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = RepairedAirportVehicle
-        fields = '__all__'
-
-
-class RepairedAirplaneSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = RepairedAirplane
-        fields = '__all__'
-
-
-class RepairedOfficeVehicleSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = RepairedOfficeVehicle
-        fields = '__all__'
-
-
-class RepairedIndustrialToolSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = RepairedIndustrialTool
-        fields = '__all__'
-
-
-class AutoIncrementFactorSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = AutoIncrementFactor
-        fields = '__all__'
-
-
-class FactorsSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
-    class Meta:
-        model = Factors
+        model = RepairedProperty
         fields = '__all__'
