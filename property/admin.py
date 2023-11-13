@@ -26,11 +26,11 @@ class AutoIncrementPropertyFactorAdmin(admin.ModelAdmin):
 class PropertyAdmin(admin.ModelAdmin):
     list_display = ['code', 'name', 'user', 'using_location', 'number', 'type_furniture', 'year_made', 'owner',
                     'use_for',
-                    'year_buy', 'repaired_status', 'install_location', 'number_type', 'document_code', 'category',
-                    'dst_inventory', 'model', 'type_item', 'property_number', 'inventory']
+                    'year_buy', 'repaired_status', 'install_location', 'document_code', 'category',
+                    'dst_inventory', 'model', 'sub_item_type', 'property_number', 'inventory']
 
     list_per_page = 20
-    list_filter = ['category', 'inventory', 'type_item', 'type_furniture']
+    list_filter = ['category', 'inventory', 'sub_item_type', 'type_furniture']
     search_fields = (
         "code",
         "name",
