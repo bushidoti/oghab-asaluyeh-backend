@@ -113,7 +113,6 @@ class PropertyFilter(django_filters.rest_framework.FilterSet):
         widget=CSVWidget
     )
 
-    repaired_status = django_filters.rest_framework.BooleanFilter(field_name='repaired_status', lookup_expr='contains')
     code = django_filters.rest_framework.NumberFilter(field_name='code', lookup_expr='contains')
     model = django_filters.rest_framework.CharFilter(field_name='model', lookup_expr='contains')
     install_location = django_filters.rest_framework.CharFilter(field_name='install_location', lookup_expr='contains')
@@ -124,7 +123,7 @@ class PropertyFilter(django_filters.rest_framework.FilterSet):
     class Meta:
         model = Property
         fields = ['code', 'name', 'user', 'using_location', 'number', 'type_furniture', 'year_made', 'owner', 'use_for',
-                  'year_buy', 'repaired_status', 'install_location', 'number_type', 'document_code', 'category',
+                  'year_buy', 'install_location', 'number_type', 'document_code', 'category',
                   'dst_inventory', 'model', 'type_item', 'property_number', 'inventory', 'name_exact']
 
 
@@ -154,3 +153,14 @@ class RepairedPropertyApi(viewsets.ModelViewSet):
     perm_slug = "property.repairedproperty"
     serializer_class = RepairedPropertySerializer
     queryset = RepairedProperty.objects.all()
+
+    def create(self, request, *args, **kwargs):
+        is_many = isinstance(request.data, list)
+        if not is_many:
+            return super(RepairedPropertyApi, self).create(request, *args, **kwargs)
+        else:
+            serializer = self.get_serializer(data=request.data, many=True)
+            serializer.is_valid(raise_exception=True)
+            self.perform_create(serializer)
+            headers = self.get_success_headers(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)

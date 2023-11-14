@@ -26,7 +26,7 @@ class AutoIncrementPropertyFactorAdmin(admin.ModelAdmin):
 class PropertyAdmin(admin.ModelAdmin):
     list_display = ['code', 'name', 'user', 'using_location', 'number', 'type_furniture', 'year_made', 'owner',
                     'use_for',
-                    'year_buy', 'repaired_status', 'install_location', 'document_code', 'category',
+                    'year_buy', 'install_location', 'document_code', 'category',
                     'dst_inventory', 'model', 'sub_item_type', 'property_number', 'inventory']
 
     list_per_page = 20

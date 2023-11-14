@@ -26,7 +26,6 @@ class Property(models.Model):
     factorCode = models.ForeignKey(FactorProperty, default='', on_delete=models.CASCADE, blank=True, null=True)
     number = models.CharField("شماره خط", default='', max_length=50, blank=True, null=True)
     year_buy = models.CharField("سال خرید", default='', max_length=4, blank=True, null=True)
-    repaired_status = models.BooleanField("تعمیر شده ؟", blank=True, null=True)
     phone_feature = models.CharField("ویژگی تلفن", default='', max_length=50, blank=True, null=True)
     cpu = models.CharField("پردازنده", max_length=50, default='', blank=True, null=True)
     motherboard = models.CharField("مادربرد", default='', max_length=50, blank=True, null=True)
@@ -42,25 +41,30 @@ class Property(models.Model):
     part2plate = models.CharField('راست', max_length=25, default='', blank=True, null=True)
     part3plate = models.CharField('سریال', max_length=3, default='', blank=True, null=True)
     cityPlate = models.CharField('شهر', max_length=10, default='', blank=True, null=True)
-    motor = models.CharField('شماره موتور',default='', max_length=50, blank=True, null=True)
-    chassis = models.CharField('شماره شاسی',default='', max_length=50, blank=True, null=True)
-    use_for = models.CharField('مورد استفاده',default='', max_length=50, blank=True, null=True)
-    movement_description = models.TextField('شرح وضعیت انتقال',default='', max_length=50, blank=True, null=True)
-    description = models.TextField('شرح',default='', max_length=50, blank=True, null=True)
-    movement_status = models.CharField('وضعیت انتقال',default='', max_length=50, blank=True, null=True)
-    movement_message = models.CharField('پیغام انتقال',default='', max_length=50, blank=True, null=True)
-    last_handling_result = models.TextField('آخرین وضعیت بازرسی',default='', max_length=500, blank=True, null=True)
-    last_handling_date = models.CharField('آخرین تاریخ بازرسی',default='', max_length=50, blank=True, null=True)
-    yearly_handling = models.CharField('سال بازرسی',default='', max_length=4, blank=True, null=True)
+    motor = models.CharField('شماره موتور', default='', max_length=50, blank=True, null=True)
+    chassis = models.CharField('شماره شاسی', default='', max_length=50, blank=True, null=True)
+    use_for = models.CharField('مورد استفاده', default='', max_length=50, blank=True, null=True)
+    movement_description = models.TextField('شرح وضعیت انتقال', default='', max_length=50, blank=True, null=True)
+    description = models.TextField('شرح', default='', max_length=500, blank=True, null=True)
+    movement_status = models.CharField('وضعیت انتقال', default='', max_length=50, blank=True, null=True)
+    movement_message = models.CharField('پیغام انتقال', default='', max_length=50, blank=True, null=True)
+    last_handling_result = models.TextField('آخرین وضعیت بازرسی', default='', max_length=500, blank=True, null=True)
+    last_handling_date = models.CharField('آخرین تاریخ بازرسی', default='', max_length=50, blank=True, null=True)
+    yearly_handling = models.CharField('سال بازرسی', default='', max_length=4, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "اموال"
 
 
 class RepairedProperty(models.Model):
-    jsonData = models.JSONField("کپسول ویژگی های اموال", blank=False, null=True)
     factorCode = models.ForeignKey(FactorProperty, on_delete=models.CASCADE, blank=True, null=True)
     property = models.ForeignKey(Property, on_delete=models.CASCADE, blank=True, null=True)
+    type = models.TextField('نوع تعمیر', default='', max_length=500, blank=True, null=True)
+    description = models.TextField('شرح', default='', max_length=500, blank=True, null=True)
+    inventory = models.CharField("انبار", max_length=50, blank=True, null=True)
+    document_code = models.CharField("شناسه فاکتور", default='', max_length=50, blank=True, null=True)
+    kilometer = models.CharField("کیلومتر", default='', max_length=50, blank=True, null=True)
+    year_change = models.CharField("سال تعویض", default='', max_length=50, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "تعمیرات اموال"
