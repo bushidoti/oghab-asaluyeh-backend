@@ -4,6 +4,7 @@ from django.db import models
 class FactorProperty(models.Model):
     code = models.BigIntegerField("کد ثبت", primary_key=True, unique=True)
     inventory = models.CharField("انبار", max_length=50, blank=True, null=True)
+    factor_type = models.CharField("نوع فاکتور", max_length=50, blank=True, null=True)
     factor = models.TextField("فایل باینری فاکتور", default='', blank=True, null=True)
     jsonData = models.JSONField("کپسول اقلام فاکتور", blank=False, null=True)
 
@@ -15,7 +16,7 @@ class Property(models.Model):
     code = models.BigIntegerField("کد ثبت", primary_key=True, unique=True)
     category = models.CharField("دسته بندی", default='', max_length=100, blank=True, null=True)
     name = models.CharField("نام اموال", default='', max_length=100, blank=True, null=True)
-    property_number = models.CharField("شماره اموال", default='', max_length=100, blank=True, null=True, unique=True)
+    property_number = models.CharField("شماره اموال", default='', max_length=100, blank=True, null=True)
     model = models.CharField("مدل", default='', max_length=50, blank=True, null=True)
     sub_item_type = models.CharField("نوع آیتم زیر مجموعه", default='', max_length=50, blank=True, null=True)
     inventory = models.CharField("انبار", default='', max_length=50, blank=True, null=True)

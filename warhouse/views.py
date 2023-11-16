@@ -159,17 +159,19 @@ class ConsumableApi(viewsets.ModelViewSet):
 class FactorsProductApi(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, MyPermission]
     perm_slug = "warhouse.allproducts"
-
     serializer_class = FactorsProductSerializer
     queryset = FactorsProduct.objects.all()
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filterset_fields = ['inventory']
 
 
 class ChecksProductApi(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, MyPermission]
     perm_slug = "warhouse.allproducts"
-
     serializer_class = ChecksProductSerializer
     queryset = ProductCheck.objects.all()
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filterset_fields = ['inventory']
 
 
 class TransmissionApi(viewsets.ModelViewSet):
