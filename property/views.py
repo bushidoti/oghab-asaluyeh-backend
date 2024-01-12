@@ -104,6 +104,7 @@ class PropertyFilter(django_filters.rest_framework.FilterSet):
     )
     factorCode = django_filters.rest_framework.NumberFilter(field_name='factorCode__code', lookup_expr='contains')
     factorCode_exact = django_filters.rest_framework.NumberFilter(field_name='factorCode', lookup_expr='exact')
+    movement_status = django_filters.rest_framework.CharFilter(field_name='movement_status', lookup_expr='exact')
     code = django_filters.rest_framework.NumberFilter(field_name='code', lookup_expr='contains')
     model = django_filters.rest_framework.CharFilter(field_name='model', lookup_expr='contains')
     install_location = django_filters.rest_framework.CharFilter(field_name='install_location', lookup_expr='contains')
@@ -113,7 +114,8 @@ class PropertyFilter(django_filters.rest_framework.FilterSet):
 
     class Meta:
         model = Property
-        fields = ['code', 'name', 'user', 'using_location', 'number', 'type_furniture', 'year_made', 'owner', 'use_for',
+        fields = ['code', 'movement_status', 'name', 'user', 'using_location', 'number', 'type_furniture', 'year_made',
+                  'owner', 'use_for',
                   'year_buy', 'install_location', 'document_code', 'category',
                   'dst_inventory', 'factorCode', 'factorCode_exact', 'model', 'property_number',
                   'inventory', 'name_exact']

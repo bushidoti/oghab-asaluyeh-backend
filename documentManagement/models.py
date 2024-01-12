@@ -33,8 +33,21 @@ class Document(models.Model):
     doc_8 = models.TextField(blank=True, null=True)
     doc_9 = models.TextField(blank=True, null=True)
     doc_10 = models.TextField(blank=True, null=True)
+    doc_11 = models.TextField(blank=True, null=True)
+    doc_12 = models.TextField(blank=True, null=True)
+    doc_13 = models.TextField(blank=True, null=True)
+    doc_14 = models.TextField(blank=True, null=True)
+    doc_15 = models.TextField(blank=True, null=True)
+    doc_16 = models.TextField(blank=True, null=True)
+    doc_17 = models.TextField(blank=True, null=True)
+    doc_18 = models.TextField(blank=True, null=True)
+    doc_19 = models.TextField(blank=True, null=True)
+    doc_20 = models.TextField(blank=True, null=True)
     doc_bail_1 = models.TextField(blank=True, null=True)
     doc_bail_2 = models.TextField(blank=True, null=True)
+    doc_bail_3 = models.TextField(blank=True, null=True)
+    doc_bail_4 = models.TextField(blank=True, null=True)
+    doc_bail_5 = models.TextField(blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "قرارداد ها"
