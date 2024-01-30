@@ -8,6 +8,15 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = '__all__'
         extra_fields = ['left_stock']
 
+    def get_field_names(self, declared_fields, info):
+        expanded_fields = super(ProductSerializer, self).get_field_names(
+            declared_fields, info)
+
+        if getattr(self.Meta, 'extra_fields', None):
+            return expanded_fields + self.Meta.extra_fields
+        else:
+            return expanded_fields
+
 
 class DynamicFieldsModelSerializer(serializers.ModelSerializer):
     def __init__(self, *args, **kwargs):
