@@ -1,6 +1,5 @@
 from django.db import models
-from django.core.validators import MaxValueValidator
-from django.db.models import Sum, Value, F, FloatField
+from django.db.models import Sum, Value, FloatField
 from django.db.models.functions import Coalesce
 
 
@@ -16,16 +15,28 @@ class Product(models.Model):
     count = models.BigIntegerField("مقدار رویت شده", blank=True, null=True)
     yearly_handling = models.CharField("سال انبارگردانی", max_length=4, blank=True, null=True)
 
-    @property
     def left_stock(self):
-        return (AllProducts.objects.filter(product=self.code).values('product').annotate(
-            total_input=Coalesce(Sum('input'), Value(0), output_field=FloatField()),
-            total_out=Coalesce(Sum(
-                'output'), Value(0), output_field=FloatField()))).annotate(
-            left_stock=F('total_input') - F('total_out'))
+        return AllProducts.objects.filter(product=self.code).values('product').annotate(
+            left_stock=Coalesce(Sum('input'), Value(0), output_field=FloatField()) - Coalesce(Sum(
+                'output'), Value(0), output_field=FloatField())).values_list("left_stock", flat=True).get(
+            product=self.code)
+
+    def input(self):
+        return AllProducts.objects.filter(product=self.code).values('product').annotate(
+            input=Coalesce(Sum('input'), Value(0), output_field=FloatField())).values_list("input", flat=True).get(
+            product=self.code)
+
+    def output(self):
+        return AllProducts.objects.filter(product=self.code).values('product').annotate(
+            output=Coalesce(Sum('output'), Value(0), output_field=FloatField())).values_list("output", flat=True).get(
+            product=self.code)
 
     class Meta:
         verbose_name_plural = "کالا ها"
+
+    left_stock.short_description = 'باقی مانده'
+    input.short_description = 'ورود'
+    output.short_description = 'خروج'
 
 
 class FactorsProduct(models.Model):
@@ -66,8 +77,6 @@ class AllProducts(models.Model):
     amendment = models.TextField("اصلاحیه", default='', blank=True, null=True)
     obsolete = models.BooleanField("باطل کردن", blank=True, null=True)
     systemID = models.CharField("شماره سیستم", default='', max_length=50, blank=True, null=True)
-
-
 
     class Meta:
         verbose_name_plural = "گزارش کالا"

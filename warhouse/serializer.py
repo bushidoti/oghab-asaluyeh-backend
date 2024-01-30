@@ -6,7 +6,7 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
-        extra_fields = ['left_stock']
+        extra_fields = ['left_stock', 'input', 'output']
 
     def get_field_names(self, declared_fields, info):
         expanded_fields = super(ProductSerializer, self).get_field_names(
