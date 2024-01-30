@@ -1,5 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator
+from django.db.models import Sum, Value, F, FloatField
+from django.db.models.functions import Coalesce
 
 
 class Product(models.Model):
@@ -13,6 +15,14 @@ class Product(models.Model):
     description = models.TextField("توضیحت", max_length=50, blank=True, null=True)
     count = models.BigIntegerField("مقدار رویت شده", blank=True, null=True)
     yearly_handling = models.CharField("سال انبارگردانی", max_length=4, blank=True, null=True)
+
+    @property
+    def left_stock(self):
+        return (AllProducts.objects.filter(product=self.code).values('product').annotate(
+            total_input=Coalesce(Sum('input'), Value(0), output_field=FloatField()),
+            total_out=Coalesce(Sum(
+                'output'), Value(0), output_field=FloatField()))).annotate(
+            left_stock=F('total_input') - F('total_out'))
 
     class Meta:
         verbose_name_plural = "کالا ها"
@@ -57,6 +67,8 @@ class AllProducts(models.Model):
     obsolete = models.BooleanField("باطل کردن", blank=True, null=True)
     systemID = models.CharField("شماره سیستم", default='', max_length=50, blank=True, null=True)
 
+
+
     class Meta:
         verbose_name_plural = "گزارش کالا"
 
@@ -75,7 +87,7 @@ class AllProducts(models.Model):
     inventory.short_description = 'انبار'
     category.short_description = 'گروه'
     name.short_description = 'نام کالا'
-    name.scale = 'مقیاس'
+    scale.short_description = 'مقیاس'
 
 
 class Handling(models.Model):

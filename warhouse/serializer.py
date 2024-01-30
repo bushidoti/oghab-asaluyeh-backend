@@ -6,6 +6,7 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
+        extra_fields = ['left_stock']
 
 
 class DynamicFieldsModelSerializer(serializers.ModelSerializer):
