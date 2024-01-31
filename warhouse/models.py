@@ -16,20 +16,30 @@ class Product(models.Model):
     yearly_handling = models.CharField("سال انبارگردانی", max_length=4, blank=True, null=True)
 
     def left_stock(self):
-        return AllProducts.objects.filter(product=self.code).values('product').annotate(
-            left_stock=Coalesce(Sum('input'), Value(0), output_field=FloatField()) - Coalesce(Sum(
-                'output'), Value(0), output_field=FloatField())).values_list("left_stock", flat=True).get(
-            product=self.code)
+        try:
+            return AllProducts.objects.filter(product=self.code).values('product').annotate(
+                left_stock=Coalesce(Sum('input'), Value(0), output_field=FloatField()) - Coalesce(Sum(
+                    'output'), Value(0), output_field=FloatField())).values_list("left_stock", flat=True).get(
+                product=self.code)
+        except AllProducts.DoesNotExist:
+            return 0
 
     def input(self):
-        return AllProducts.objects.filter(product=self.code).values('product').annotate(
-            input=Coalesce(Sum('input'), Value(0), output_field=FloatField())).values_list("input", flat=True).get(
-            product=self.code)
+        try:
+            return AllProducts.objects.filter(product=self.code).values('product').annotate(
+                input=Coalesce(Sum('input'), Value(0), output_field=FloatField())).values_list("input", flat=True).get(
+                product=self.code)
+        except AllProducts.DoesNotExist:
+            return 0
 
     def output(self):
-        return AllProducts.objects.filter(product=self.code).values('product').annotate(
-            output=Coalesce(Sum('output'), Value(0), output_field=FloatField())).values_list("output", flat=True).get(
-            product=self.code)
+        try:
+            return AllProducts.objects.filter(product=self.code).values('product').annotate(
+                output=Coalesce(Sum('output'), Value(0), output_field=FloatField())).values_list("output",
+                                                                                                 flat=True).get(
+                product=self.code)
+        except AllProducts.DoesNotExist:
+            return 0
 
     class Meta:
         verbose_name_plural = "کالا ها"
