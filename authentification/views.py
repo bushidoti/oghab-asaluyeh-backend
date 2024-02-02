@@ -7,6 +7,8 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import viewsets
 from django.contrib.auth.models import User
 from authentification.serializer import UserSerializer, EmployeeSerializer, MaintenanceSerializer, BannerSerializer
+import requests
+import jdatetime
 
 
 class FullNameView(APIView):
@@ -14,6 +16,16 @@ class FullNameView(APIView):
 
     def get(self, request):
         content = {'message': request.user.get_full_name()}
+        return Response(content)
+
+
+class DateView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        url = f'https://holidayapi.ir/jalali/{jdatetime.datetime.now().year}/{jdatetime.datetime.now().month}/{jdatetime.datetime.now().day}'
+        res = requests.get(url)
+        content = {'message': res.json()}
         return Response(content)
 
 
