@@ -17,7 +17,7 @@ class Maintenance(models.Model):
 
 
 class Banner(models.Model):
-    message = models.TextField(verbose_name='متن')
+    message = models.TextField(verbose_name='متن', blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "متن بنر"
