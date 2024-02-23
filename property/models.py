@@ -29,6 +29,7 @@ class Property(models.Model):
     year_buy = models.CharField("سال خرید", default='', max_length=4, blank=True, null=True)
     phone_feature = models.CharField("ویژگی تلفن", default='', max_length=50, blank=True, null=True)
     cpu = models.CharField("پردازنده", max_length=50, default='', blank=True, null=True)
+    gpu = models.CharField("گرافیک", max_length=50, default='', blank=True, null=True)
     motherboard = models.CharField("مادربرد", default='', max_length=50, blank=True, null=True)
     ram = models.CharField("رم", max_length=50, default='', blank=True, null=True)
     power = models.CharField("پاور", max_length=50, default='', blank=True, null=True)
