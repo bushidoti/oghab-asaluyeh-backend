@@ -119,7 +119,7 @@ class Handling(models.Model):
 
 
 class Consumable(models.Model):
-    value = models.CharField("مقدار", max_length=50, blank=True)
+    value = models.CharField("مقدار", max_length=50, blank=True, unique=True)
 
     def __str__(self):
         return self.value
@@ -129,7 +129,7 @@ class Consumable(models.Model):
 
 
 class Category(models.Model):
-    value = models.CharField("مقدار", max_length=50, blank=True)
+    value = models.CharField("مقدار", max_length=50, blank=True, unique=True)
 
     class Meta:
         verbose_name_plural = "گروه"
