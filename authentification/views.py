@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from authentification.serializer import UserSerializer, EmployeeSerializer, MaintenanceSerializer, BannerSerializer
 import requests
 import jdatetime
+from django.contrib.auth.models import Permission
 
 
 class FullNameView(APIView):
@@ -81,3 +82,13 @@ class MaintenanceApi(viewsets.ModelViewSet):
 class BannerApi(viewsets.ModelViewSet):
     serializer_class = BannerSerializer
     queryset = Banner.objects.all()
+
+
+class PermissionComplexView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        group_permissions = Permission.objects.filter(group__user=request.user)
+        perm_tuple = [x.name for x in group_permissions]
+        content = {'content': perm_tuple}
+        return Response(content)

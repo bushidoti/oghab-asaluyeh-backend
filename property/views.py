@@ -74,6 +74,8 @@ class AutoIncrementPropertyFactorApi(viewsets.ModelViewSet):
     perm_slug = "property.autoincrementpropertyfactor"
     serializer_class = AutoIncrementPropertyFactorSerializer
     queryset = AutoIncrementPropertyFactor.objects.all()
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filterset_fields = ['inventory']
 
 
 class PropertyFilter(django_filters.rest_framework.FilterSet):
@@ -147,6 +149,8 @@ class RepairedPropertyApi(viewsets.ModelViewSet):
     perm_slug = "property.repairedproperty"
     serializer_class = RepairedPropertySerializer
     queryset = RepairedProperty.objects.all()
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filterset_fields = ['property']
 
     def create(self, request, *args, **kwargs):
         is_many = isinstance(request.data, list)
