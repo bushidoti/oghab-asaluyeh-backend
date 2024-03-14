@@ -11,7 +11,7 @@ class Product(models.Model):
     inventory = models.CharField("انبار", max_length=50, blank=True, null=True)
     recycle_status = models.CharField("وضعیت انبارگردانی", max_length=50, blank=True, null=True)
     recycle_date = models.CharField("تاریخ آخرین انبار گردانی", max_length=50, blank=True, null=True)
-    description = models.TextField("توضیحت", max_length=50, blank=True, null=True)
+    description = models.TextField("توضیحات", max_length=50, blank=True, null=True)
     count = models.BigIntegerField("مقدار رویت شده", blank=True, null=True)
     yearly_handling = models.CharField("سال انبارگردانی", max_length=4, blank=True, null=True)
 
